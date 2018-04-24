@@ -1,0 +1,10 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-config-standard", "tslint-react"],
+  "rules": {
+    "no-trailing-whitespace": [true, "ignore-jsdoc"],
+    "indent": [true, "spaces", 2],
+    "quotemark": [true, "single"],
+    "no-floating-promises": [false] // TODO Remove it
+  }
+}

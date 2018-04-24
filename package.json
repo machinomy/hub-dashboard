@@ -6,6 +6,8 @@
   "license": "Apache 2.0",
   "devDependencies": {
     "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-react": "^3.5.1",
     "typescript": "2.8.1"
   }
 }
