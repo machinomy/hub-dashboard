@@ -3,5 +3,9 @@
   "version": "0.0.1",
   "description": "Mission control for Machinomy Hub",
   "author": "Machinomy",
-  "license": "Apache 2.0"
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "tslint": "^5.9.1",
+    "typescript": "2.8.1"
+  }
 }
