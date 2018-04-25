@@ -31,7 +31,7 @@ export default class ExchangeRateApiService implements ApiService {
     }
   }
 
-  private setupRoutes() {
+  private setupRoutes () {
     this.router.get('/', this.doRate)
   }
 }

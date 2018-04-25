@@ -3,8 +3,9 @@ import { ApiService } from './ApiService'
 import Machinomy from 'machinomy'
 import { PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
 import log from '../util/log'
-import {Role} from '../Role'
+import { Role } from '../Role'
 import ChannelClaimsService from '../ChannelClaimsService'
+// tslint:disable-next-line:no-unused-variable
 import channelClaimToJson, { ChannelClaimStatus } from '../domain/ChannelClaim'
 
 const LOG = log('ChannelsApiService')
@@ -18,7 +19,7 @@ export default class ChannelsApiService implements ApiService {
 
   private claimService: ChannelClaimsService
 
-  constructor(machinomy: Machinomy, claimService: ChannelClaimsService) {
+  constructor (machinomy: Machinomy, claimService: ChannelClaimsService) {
     this.machinomy = machinomy
     this.claimService = claimService
 
@@ -28,7 +29,7 @@ export default class ChannelsApiService implements ApiService {
     this.setupRoutes()
   }
 
-  private async doOpenChannels(req: express.Request, res: express.Response) {
+  private async doOpenChannels (req: express.Request, res: express.Response) {
     if (!req.session!.roles.has(Role.ADMIN)) {
       return res.sendStatus(403)
     }
@@ -48,12 +49,12 @@ export default class ChannelsApiService implements ApiService {
     res.send(channels.map(PaymentChannelSerde.instance.serialize.bind(PaymentChannelSerde.instance)))
   }
 
-  private async doClaimStatus(req: express.Request, res: express.Response) {
+  private async doClaimStatus (req: express.Request, res: express.Response) {
     const channelId = req.params.channelId
 
     if (!channelId) {
       res.sendStatus(400)
-      return
+      return undefined
     }
 
     try {
@@ -68,7 +69,7 @@ export default class ChannelsApiService implements ApiService {
           confirmedAt: null,
           failedAt: null
         })
-        return
+        return undefined
       }
 
       return res.send(channelClaimToJson(claim))
@@ -81,7 +82,7 @@ export default class ChannelsApiService implements ApiService {
     }
   }
 
-  private async doCloseChannel(req: express.Request, res: express.Response) {
+  private async doCloseChannel (req: express.Request, res: express.Response) {
     const channelId = req.params.channelId
     let channel
 
@@ -127,7 +128,7 @@ export default class ChannelsApiService implements ApiService {
     }
   }
 
-  private setupRoutes() {
+  private setupRoutes () {
     this.router.get('/', this.doOpenChannels)
     this.router.get('/:channelId/claimStatus', this.doClaimStatus)
     this.router.post('/:channelId/close', this.doCloseChannel)

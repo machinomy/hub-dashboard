@@ -14,6 +14,7 @@ export default class AuthApiService implements ApiService {
 
   private crManager: CRAuthManager
 
+  // tslint:disable-next-line:no-unused-variable
   private sessionStore: Store
 
   private config: Config
@@ -34,7 +35,7 @@ export default class AuthApiService implements ApiService {
     LOG.info(`Sending challenge nonce.`)
 
     res.send({
-      nonce,
+      nonce
     })
   }
 

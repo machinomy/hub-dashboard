@@ -6,9 +6,9 @@ const util = require('ethereumjs-util')
 const LOG = log('AuthManager')
 
 export default interface CRAuthManager {
-  generateNonce(): Promise<string>
+  generateNonce (): Promise<string>
 
-  checkSignature(address: string, nonce: string, domain: string, signature: string): Promise<string | null>
+  checkSignature (address: string, nonce: string, domain: string, signature: string): Promise<string | null>
 }
 
 const CHALLENGE_EXPIRY_MS = 1000 * 60 * 2 // 2 hours

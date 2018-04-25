@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {ApiService} from './ApiService'
+import { ApiService } from './ApiService'
 import Config from '../Config'
 
 export default class BrandingApiService implements ApiService {
@@ -9,13 +9,13 @@ export default class BrandingApiService implements ApiService {
 
   config: Config
 
-  constructor(config: Config) {
+  constructor (config: Config) {
     this.config = config
     this.doBranding = this.doBranding.bind(this)
     this.setupRoutes()
   }
 
-  private doBranding(req: express.Request, res: express.Response) {
+  private doBranding (req: express.Request, res: express.Response) {
     res.send({
       title: this.config.branding.title || '',
       companyName: this.config.branding.companyName || '',
@@ -26,7 +26,7 @@ export default class BrandingApiService implements ApiService {
     })
   }
 
-  private setupRoutes() {
+  private setupRoutes () {
     this.router.get('/', this.doBranding)
   }
 }

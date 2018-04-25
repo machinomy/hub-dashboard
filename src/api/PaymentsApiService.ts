@@ -5,10 +5,8 @@ import { PaymentHandler } from '../PaymentHandler'
 import log from '../util/log'
 import { WithPayment } from '../domain/WithPayment'
 import ChannelWatcher from '../ChannelWatcher'
-import { Role } from '../Role'
 import ExchangeRateDao from '../dao/ExchangeRateDao'
 import { ownedAddressOrAdmin } from '../util/ownedAddressOrAdmin'
-import {PaymentSerde} from 'machinomy/dist/lib/payment'
 
 const LOG = log('PaymentsApiService')
 
@@ -21,8 +19,10 @@ export default class PaymentsApiService implements ApiService {
 
   private paymentHandler: PaymentHandler<any, any>
 
+  // tslint:disable-next-line:no-unused-variable
   private exchangeRateDao: ExchangeRateDao
 
+  // tslint:disable-next-line:no-unused-variable
   private channelWatcher: ChannelWatcher
 
   constructor (machinomy: Machinomy, paymentHandler: PaymentHandler<any, any>, exchangeRateDao: ExchangeRateDao, channelWatcher: ChannelWatcher) {

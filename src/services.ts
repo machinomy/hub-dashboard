@@ -1,11 +1,11 @@
 import Machinomy from 'machinomy'
 import { Registry } from './Container'
 import AuthApiService from './api/AuthApiService'
-import CRAuthManager, {MemoryCRAuthManager} from './CRAuthManager'
+import CRAuthManager, { MemoryCRAuthManager } from './CRAuthManager'
 import Config from './Config'
 import { ApiService } from './api/ApiService'
 import BrandingApiService from './api/BrandingApiService'
-import {default as DBEngine, PostgresDBEngine} from './DBEngine'
+import { default as DBEngine, PostgresDBEngine } from './DBEngine'
 import { Store } from 'express-session'
 import { PaymentHandler } from './PaymentHandler'
 import PaymentsApiService from './api/PaymentsApiService'
@@ -15,16 +15,16 @@ import ChannelsApiService from './api/ChannelsApiService'
 import AccountsApiService from './api/AccountsApiService'
 import WithdrawalsApiService from './api/WithdrawalsApiService'
 import ExchangeRateService from './ExchangeRateService'
-import ExchangeRateDao, {PostgresExchangeRateDao} from './dao/ExchangeRateDao'
+import ExchangeRateDao, { PostgresExchangeRateDao } from './dao/ExchangeRateDao'
 import { Client } from 'pg'
 import WithdrawalsService from './WithdrawalsService'
 import PaymentsDao, { PostgresPaymentsDao } from './dao/PaymentsDao'
 import WithdrawalsDao, { PostgresWithdrawalsDao } from './dao/WithdrawalsDao'
-import {default as GlobalSettingsDao, PostgresGlobalSettingsDao} from './dao/GlobalSettingsDao'
+import { default as GlobalSettingsDao, PostgresGlobalSettingsDao } from './dao/GlobalSettingsDao'
 import GlobalSettingsApiService from './api/GlobalSettingsApiService'
 import ExchangeRateApiService from './api/ExchangeRateApiService'
 import { default as ChannelsDao, PostgresChannelsDao } from './dao/ChannelsDao'
-import ChannelClaimsDao, {PostgresChannelClaimsDao} from './dao/ChannelClaimsDao'
+import ChannelClaimsDao, { PostgresChannelClaimsDao } from './dao/ChannelClaimsDao'
 import ChannelClaimsService from './ChannelClaimsService'
 
 export default function defaultRegistry (otherRegistry?: Registry): Registry {
@@ -38,7 +38,7 @@ export default function defaultRegistry (otherRegistry?: Registry): Registry {
   registry.bind('AccountsApiService', (paymentsDao: PaymentsDao, wdService: WithdrawalsService, exRateDao: ExchangeRateDao, chDao: ChannelsDao) => new AccountsApiService(paymentsDao, wdService, exRateDao, chDao), ['PaymentsDao', 'WithdrawalsService', 'ExchangeRateDao', 'ChannelsDao'])
   registry.bind('ExchangeRateApiService', (exRateDao: ExchangeRateDao) => new ExchangeRateApiService(exRateDao), ['ExchangeRateDao'])
   registry.bind('WithdrawalsApiService', (dao: WithdrawalsDao) => new WithdrawalsApiService(dao), ['WithdrawalsDao'])
-  registry.bind('WithdrawalsService', (dao: WithdrawalsDao, globalSettingsDao: GlobalSettingsDao, web3: any, config: Config) => new WithdrawalsService(dao, globalSettingsDao,  web3, config), ['WithdrawalsDao', 'GlobalSettingsDao', 'Web3', 'Config'])
+  registry.bind('WithdrawalsService', (dao: WithdrawalsDao, globalSettingsDao: GlobalSettingsDao, web3: any, config: Config) => new WithdrawalsService(dao, globalSettingsDao, web3, config), ['WithdrawalsDao', 'GlobalSettingsDao', 'Web3', 'Config'])
   registry.bind('ExchangeRateService', (dao: ExchangeRateDao) => new ExchangeRateService(dao), ['ExchangeRateDao'])
   registry.bind('ExchangeRateDao', (db: DBEngine<Client>) => new PostgresExchangeRateDao(db), ['DBEngine'])
   registry.bind('ChannelClaimsService', (dao: ChannelClaimsDao, machinomy: Machinomy) => new ChannelClaimsService(dao, machinomy), ['ChannelClaimsDao', 'Machinomy'])
@@ -50,7 +50,7 @@ export default function defaultRegistry (otherRegistry?: Registry): Registry {
   registry.bind('AdminApiService', () => new AdminApiService(), [])
   registry.bind('GlobalSettingsApiService', (dao: GlobalSettingsDao) => new GlobalSettingsApiService(dao), ['GlobalSettingsDao'])
   registry.bind('ApiService', (...args: ApiService[]) => [...args], ['AuthApiService', 'BrandingApiService', 'PaymentsApiService', 'ChannelsApiService', 'AdminApiService', 'AccountsApiService', 'WithdrawalsApiService', 'GlobalSettingsApiService', 'ExchangeRateApiService'])
-  registry.bind('ChannelWatcher', (machinomy: Machinomy, paymentsDao: PaymentsDao, web3: any) => new ChannelWatcher(machinomy, paymentsDao, web3), ['Machinomy', 'PaymentsDao', 'Web3']);  registry.bind('DBEngine', (config: Config) => new PostgresDBEngine(config), ['Config'])
+  registry.bind('ChannelWatcher', (machinomy: Machinomy, paymentsDao: PaymentsDao, web3: any) => new ChannelWatcher(machinomy, paymentsDao, web3), ['Machinomy', 'PaymentsDao', 'Web3']); registry.bind('DBEngine', (config: Config) => new PostgresDBEngine(config), ['Config'])
   registry.bind('Machinomy', (config: Config, web3: any) => new Machinomy(config.recipientAddress, web3, {
     databaseUrl: config.databaseUrl,
     closeOnInvalidPayment: false

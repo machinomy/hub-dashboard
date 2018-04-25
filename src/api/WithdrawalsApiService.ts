@@ -1,6 +1,6 @@
 import * as express from 'express'
-import {ApiService} from './ApiService'
-import {withdrawalToJson} from '../domain/Withdrawal'
+import { ApiService } from './ApiService'
+import { withdrawalToJson } from '../domain/Withdrawal'
 import WithdrawalsDao from '../dao/WithdrawalsDao'
 import log from '../util/log'
 

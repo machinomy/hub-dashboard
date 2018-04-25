@@ -1,5 +1,5 @@
 import * as express from 'express'
-import {ApiService} from './ApiService'
+import { ApiService } from './ApiService'
 import { default as Withdrawal, WithdrawalStatus, withdrawalToJson } from '../domain/Withdrawal'
 import WithdrawalsService from '../WithdrawalsService'
 import PaymentsDao from '../dao/PaymentsDao'
