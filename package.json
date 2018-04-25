@@ -5,6 +5,9 @@
   "description": "Mission control for Machinomy Hub",
   "author": "Machinomy",
   "license": "Apache 2.0",
+  "scripts": {
+    "lint": "tslint --format stylish --project . --exclude 'node_modules/**/*.ts'"
+  },
   "devDependencies": {
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
