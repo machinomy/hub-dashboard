@@ -17,17 +17,20 @@
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.1",
+    "@types/cookie-signature": "^1.0.1",
     "@types/cors": "^2.8.4",
     "@types/express-session": "^1.15.8",
     "@types/pg": "^7.4.6",
     "bignumber.js": "^6.0.0",
     "cookie-parser": "^1.4.3",
+    "cookie-signature": "^1.1.0",
     "cors": "^2.8.4",
     "ethereumjs-util": "^5.1.5",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "logdna": "^2.0.0",
     "machinomy": "^1.7.11",
+    "path-to-regexp": "^2.2.1",
     "pg": "^7.4.1",
     "uuid": "^3.2.1"
   }
