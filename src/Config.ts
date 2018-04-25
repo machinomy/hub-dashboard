@@ -11,7 +11,7 @@ const ENV_VARS = [
   'RECIPIENT_WHITELIST',
   'SESSION_SECRET',
   'CARD_NAME',
-  'CARD_IMAGE_URL',
+  'CARD_IMAGE_URL'
 ]
 
 export interface BrandingConfig {
@@ -23,16 +23,6 @@ export interface BrandingConfig {
 }
 
 export default class Config {
-  static fromEnv(): Config {
-    const instance = new Config()
-
-    ENV_VARS.forEach((v: string) => {
-      (instance as any)[camelize(v, '_')] = process.env[v]
-    })
-
-    return instance
-  }
-
   public ethRpcUrl: string = ''
   public databaseUrl: string = ''
   public redisUrl: string = ''
@@ -47,4 +37,14 @@ export default class Config {
   public staleChannelDays: number = 7
   public registry?: Registry
   public branding: BrandingConfig
+
+  static fromEnv (): Config {
+    const instance = new Config()
+
+    ENV_VARS.forEach((v: string) => {
+      (instance as any)[camelize(v, '_')] = process.env[v]
+    })
+
+    return instance
+  }
 }

@@ -5,7 +5,7 @@ export default class Mutex {
 
   private busy: boolean = false
 
-  synchronize<T>(task: Task<T>): Promise<T> {
+  synchronize<T> (task: Task<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       this.queue.push(() => task().then(resolve).catch(reject))
 
@@ -15,7 +15,7 @@ export default class Mutex {
     })
   }
 
-  private dequeue() {
+  private dequeue () {
     const next = this.queue.shift()
 
     if (!next) {

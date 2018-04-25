@@ -12,16 +12,17 @@ export interface TotalsTuple {
 }
 
 export default interface TipsDao {
-  save(tip: TipDto, payment: Payment): Promise<Tip>
+  save (tip: TipDto, payment: Payment): Promise<Tip>
 
-  byAddress(address: string): Promise<Tip[]>
+  byAddress (address: string): Promise<Tip[]>
 
-  all(): Promise<Tip[]>
+  all (): Promise<Tip[]>
 }
 
 export class PostgresTipsDao implements TipsDao {
   private engine: DBEngine<Client>
 
+  // tslint:disable-next-line:no-unused-variable
   private machinomy: Machinomy
 
   constructor (engine: DBEngine<Client>, machinomy: Machinomy) {
@@ -104,7 +105,7 @@ export class PostgresTipsDao implements TipsDao {
     })
   }
 
-  private stripPrefix(prefix: string, object: any): any {
+  private stripPrefix (prefix: string, object: any): any {
     return Object.keys(object).reduce((acc: any, curr: string) => {
       acc[curr.split('.')[1]] = object[curr]
       return acc

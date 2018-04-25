@@ -7,9 +7,9 @@ import Mutex from './util/Mutex'
 export type Executor<T, U> = (client: T) => Promise<U>
 
 export default interface DBEngine<T> {
-  connect(): Promise<void>
-  disconnect(): Promise<void>
-  exec<U>(executor: Executor<T, U>): Promise<U>
+  connect (): Promise<void>
+  disconnect (): Promise<void>
+  exec<U> (executor: Executor<T, U>): Promise<U>
 }
 
 export class PostgresDBEngine implements DBEngine<Client> {
@@ -19,13 +19,13 @@ export class PostgresDBEngine implements DBEngine<Client> {
 
   private config: Config
 
-  private client: Client|null = null
+  private client: Client | null = null
 
-  constructor(config: Config) {
+  constructor (config: Config) {
     this.config = config
   }
 
-  async connect(): Promise<void> {
+  async connect (): Promise<void> {
     return this.connectionMutex.synchronize(async () => {
       if (this.client) {
         this.LOG.debug('Database is already connected.')
@@ -33,7 +33,7 @@ export class PostgresDBEngine implements DBEngine<Client> {
       }
 
       const client = new Client({
-        connectionString: this.config.databaseUrl,
+        connectionString: this.config.databaseUrl
       })
 
       this.LOG.info('Connecting to Postgres database.')
@@ -43,7 +43,7 @@ export class PostgresDBEngine implements DBEngine<Client> {
     })
   }
 
-  async disconnect(): Promise<void> {
+  async disconnect (): Promise<void> {
     return this.connectionMutex.synchronize(async () => {
       if (!this.client) {
         this.LOG.debug('No active database connection, so nothing to disconnect.')
@@ -56,7 +56,7 @@ export class PostgresDBEngine implements DBEngine<Client> {
     })
   }
 
-  async exec<U>(executor: Executor<Client, U>): Promise<U> {
+  async exec<U> (executor: Executor<Client, U>): Promise<U> {
     if (!this.client) {
       this.LOG.info('Database is not connected. Attempting connection now.')
       await this.connect()

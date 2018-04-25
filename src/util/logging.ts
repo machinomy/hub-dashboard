@@ -24,10 +24,10 @@ const levels: any = {
   'error': 40,
   'warn': 30,
   'info': 20,
-  'debug': 10,
+  'debug': 10
 }
 
-function lookup(data: object, expression: string): object {
+function lookup (data: object, expression: string): object {
   let exp: string[] = expression.split('.')
   let retVal: any = data
   do {
@@ -44,27 +44,27 @@ export class SCLogger {
 
   defaultMeta: object
 
-  constructor(app: string, name: string, key?: string) {
+  constructor (app: string, name: string, key?: string) {
     if (key) {
       this.logdna = LogDNALogger.createLogger(key, {
         index_meta: true,
-        app,
+        app
       })
     }
 
     this.name = name
     this.defaultMeta = {
-      env: process.env.NODE_ENV || 'local',
+      env: process.env.NODE_ENV || 'local'
     }
   }
 
-  setDefaultMeta(meta: object) {
+  setDefaultMeta (meta: object) {
     this.defaultMeta = Object.assign(this.defaultMeta, meta)
     return this
   }
 
-  log(level: string, msgFmt: any, meta?: any) {
-    let fmt: string|undefined
+  log (level: string, msgFmt: any, meta?: any) {
+    let fmt: string | undefined
 
     if (meta === undefined && typeof msgFmt !== 'string') {
       meta = msgFmt
@@ -78,7 +78,9 @@ export class SCLogger {
 
     let msg = fmt && fmt.replace(/{(.*?)}/g, (_: string, field: any): any => {
       field = field.replace(/^\s*(.*?)\s*$/, '$1')
+      // tslint:disable-next-line:no-unnecessary-type-assertion
       let val = lookup(meta!, field)
+      // tslint:disable-next-line:strict-type-predicates
       return val === undefined ? `{${field}}` : this.renderVal(val)
     })
 
@@ -86,7 +88,7 @@ export class SCLogger {
       level,
       levelno,
       name: this.name,
-      message: msg,
+      message: msg
     }, meta)
 
     const c = console as any
@@ -100,27 +102,27 @@ export class SCLogger {
     }
   }
 
-  error(msgFmt: string, meta?: object) {
+  error (msgFmt: string, meta?: object) {
     this.log('error', msgFmt, meta)
   }
 
-  warn(msgFmt: string, meta?: object) {
+  warn (msgFmt: string, meta?: object) {
     this.log('warn', msgFmt, meta)
   }
 
-  warning(msgFmt: string, meta?: object) {
+  warning (msgFmt: string, meta?: object) {
     this.log('warn', msgFmt, meta)
   }
 
-  info(msgFmt: string, meta?: object) {
+  info (msgFmt: string, meta?: object) {
     this.log('info', msgFmt, meta)
   }
 
-  debug(msgFmt: string, meta?: object) {
+  debug (msgFmt: string, meta?: object) {
     this.log('debug', msgFmt, meta)
   }
 
-  private renderVal(val: any): any {
+  private renderVal (val: any): any {
     if (val instanceof Error) {
       return `${val.message}\n${val.stack}`
     }
@@ -132,6 +134,6 @@ export class SCLogger {
 /*
  * See top of file for usage!
  */
-export default function getLogger(app: string, name: string) {
+export default function getLogger (app: string, name: string) {
   return new SCLogger(app, name || app, process.env.SC_LOGDNA_KEY)
 }

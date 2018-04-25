@@ -1,4 +1,4 @@
-export default function camelize(str: string, sep: string): string {
+export default function camelize (str: string, sep: string): string {
   const split = str.split(sep)
 
   return split.reduce((acc: string, curr: string, i) => {

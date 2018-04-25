@@ -7,11 +7,11 @@ import { Container } from './Container'
 import defaultRegistry from './services'
 import AuthApiService from './api/AuthApiService'
 import { ApiService } from './api/ApiService'
-import {default as AuthHandler, DefaultAuthHandler} from './middleware/AuthHandler'
+import { default as AuthHandler, DefaultAuthHandler } from './middleware/AuthHandler'
 import AuthHeaderMiddleware from './middleware/AuthHeaderMiddleware'
 import ChannelWatcher from './ChannelWatcher'
 import * as path from 'path'
-import * as cors from 'cors';
+import * as cors from 'cors'
 import ExchangeRateService from './ExchangeRateService'
 
 const Web3 = require('web3')
@@ -35,7 +35,7 @@ export default class PaymentHub {
 
   private exchangeRateService: ExchangeRateService
 
-  constructor(config: Config) {
+  constructor (config: Config) {
     this.authenticateRoutes = this.authenticateRoutes.bind(this)
 
     const registry = defaultRegistry(config.registry)
@@ -62,7 +62,7 @@ export default class PaymentHub {
 
     const corsHandler = cors({
       origin: true,
-      credentials: true,
+      credentials: true
     })
     this.app.options('*', corsHandler)
     this.app.use(corsHandler)
@@ -75,8 +75,8 @@ export default class PaymentHub {
       resave: false,
       store,
       cookie: {
-        httpOnly: true,
-      },
+        httpOnly: true
+      }
     }))
     this.app.use(express.json())
     this.app.use('/assets', express.static(path.join(__dirname, './', 'public')))
@@ -84,7 +84,7 @@ export default class PaymentHub {
     this.setupRoutes()
   }
 
-  public async start(): Promise<void> {
+  public async start (): Promise<void> {
     try {
       await this.channelWatcher.start()
     } catch (err) {
@@ -105,30 +105,31 @@ export default class PaymentHub {
       process.exit(1)
     }
 
+    // tslint:disable-next-line:no-unnecessary-type-assertion
     return new Promise((resolve) => this.app.listen(this.config.port, () => {
       LOG.info('Listening on port {port}.', {
-        port: this.config.port,
+        port: this.config.port
       })
       resolve()
     })) as Promise<void>
   }
 
-  public async closeSettlingChannels() {
+  public async closeSettlingChannels () {
     await this.channelWatcher.start()
     await this.channelWatcher.closeSettlingChannels()
   }
 
-  private setupRoutes() {
+  private setupRoutes () {
     const apiServices: AuthApiService[] = this.container.resolve('ApiService')
     apiServices.forEach((s: ApiService) => {
       LOG.debug(`Setting up API service at /{namespace}.`, {
-        namespace: s.namespace,
+        namespace: s.namespace
       })
       this.app.use(`/${s.namespace}`, s.router)
     })
   }
 
-  private async authenticateRoutes(req: express.Request, res: express.Response, next: () => void) {
+  private async authenticateRoutes (req: express.Request, res: express.Response, next: () => void) {
     const roles = await this.authHandler.rolesFor(req)
     req.session!.roles = new Set(roles)
     const allowed = await this.authHandler.isAuthorized(req)

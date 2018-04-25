@@ -23,7 +23,7 @@ const hub = new PaymentHub({
   recipientAddress: process.env.WALLET_ADDRESS!,
   hotWalletAddress: process.env.WALLET_ADDRESS!,
   adminAddresses: [
-    process.env.WALLET_ADDRESS!,
+    process.env.WALLET_ADDRESS!
   ],
   registry,
   branding: {
@@ -36,7 +36,7 @@ const hub = new PaymentHub({
   staleChannelDays: 7
 })
 
-async function run() {
+async function run () {
   if (process.argv[2] === 'closeSettlingChannels') {
     await hub.closeSettlingChannels()
     process.exit(0)

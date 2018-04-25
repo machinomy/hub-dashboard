@@ -15,7 +15,7 @@ export interface ServiceDefinition {
 export class Registry {
   private registry: { [name: string]: ServiceDefinition }
 
-  constructor(otherRegistry?: Registry) {
+  constructor (otherRegistry?: Registry) {
     this.clear()
 
     if (otherRegistry) {
@@ -24,11 +24,11 @@ export class Registry {
     }
   }
 
-  clear(): void {
+  clear (): void {
     this.registry = {}
   }
 
-  bind(name: string, factory: Factory, dependencies: string[] = [], isSingleton: boolean = true) {
+  bind (name: string, factory: Factory, dependencies: string[] = [], isSingleton: boolean = true) {
     REG_LOG.debug(`Registering service ${name}.`)
 
     if (this.registry[name]) {
@@ -39,11 +39,11 @@ export class Registry {
       name,
       factory,
       dependencies,
-      isSingleton,
+      isSingleton
     }
   }
 
-  get(name: string): ServiceDefinition {
+  get (name: string): ServiceDefinition {
     const service = this.registry[name]
 
     if (!service) {
@@ -53,7 +53,7 @@ export class Registry {
     return service
   }
 
-  services(): string[] {
+  services (): string[] {
     return Object.keys(this.registry)
   }
 }
@@ -63,20 +63,20 @@ export class Container {
 
   private cache: { [name: string]: any }
 
-  constructor(registry: Registry) {
+  constructor (registry: Registry) {
     this.registry = registry
     this.clear()
   }
 
-  resolve<T>(name: string) {
+  resolve<T> (name: string) {
     return this.internalResolve<T>(name, [])
   }
 
-  clear(): void {
+  clear (): void {
     this.cache = {}
   }
 
-  private internalResolve<T>(name: string, visited: string[]) {
+  private internalResolve<T> (name: string, visited: string[]) {
     CONT_LOG.debug(`Resolving service ${name}.`)
 
     if (visited[0] === name || visited[visited.length - 1] === name) {
@@ -103,7 +103,7 @@ export class Container {
     return instance as T
   }
 
-  private instantiate<T>(definition: ServiceDefinition, visited: string[]) {
+  private instantiate<T> (definition: ServiceDefinition, visited: string[]) {
     visited.push(definition.name)
     const dependencies = definition.dependencies.map(
       (dep: string) => this.internalResolve(dep, visited.slice()))

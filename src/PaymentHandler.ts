@@ -4,11 +4,11 @@ import TipsDao from './dao/TipsDao'
 import { Tip, TipDto } from './domain/Tip'
 
 export interface PaymentHandler<T, U> {
-  parseMeta(req: express.Request): Promise<T>
+  parseMeta (req: express.Request): Promise<T>
 
-  storeMeta(meta: T, payment: Payment): Promise<void>
+  storeMeta (meta: T, payment: Payment): Promise<void>
 
-  fetchHistory(address?: string): Promise<U[]>
+  fetchHistory (address?: string): Promise<U[]>
 }
 
 export class PaymentHandlerImpl implements PaymentHandler<TipDto, Tip> {
