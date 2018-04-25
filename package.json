@@ -16,6 +16,7 @@
     "webpack": "^4.6.0"
   },
   "dependencies": {
+    "@machinomy/contracts": "^4.0.9",
     "@types/cookie-parser": "^1.4.1",
     "@types/cookie-signature": "^1.0.1",
     "@types/cors": "^2.8.4",
