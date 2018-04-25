@@ -12,7 +12,7 @@ import AuthHeaderMiddleware from './middleware/AuthHeaderMiddleware'
 import ChannelWatcher from './ChannelWatcher'
 import * as path from 'path'
 import * as cors from 'cors'
-import ExchangeRateService from './ExchangeRateService'
+import ExchangeRateService from './service/ExchangeRateService'
 
 const Web3 = require('web3')
 

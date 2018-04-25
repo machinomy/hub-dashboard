@@ -16,7 +16,7 @@ export default class ChannelWatcher extends EventEmitter {
 
   private web3: any
 
-  private contract: Unidirectional.Contract
+  private contract: Unidirectional.Contract | undefined
 
   constructor (machinomy: Machinomy, paymentsDao: PaymentsDao, web3: any) {
     super()
@@ -94,8 +94,8 @@ export default class ChannelWatcher extends EventEmitter {
   private async processStaleChannel (chan: PaymentChannel): Promise<boolean> {
     try {
       const channelId = chan.channelId
-      const isOpen = await this.contract.isOpen(channelId)
-      const isSettling = await this.contract.isSettling(channelId)
+      const isOpen = await this.contract!.isOpen(channelId)
+      const isSettling = await this.contract!.isSettling(channelId)
 
       // need the below check because Machinomy merges the smart contract state with the database state.
       // since we're accessing the DB directly, we need to perform this check manually.

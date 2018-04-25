@@ -13,14 +13,14 @@ export interface ServiceDefinition {
 }
 
 export class Registry {
-  private registry: { [name: string]: ServiceDefinition }
+  private registry: { [name: string]: ServiceDefinition } | undefined
 
   constructor (otherRegistry?: Registry) {
     this.clear()
 
     if (otherRegistry) {
       const otherServices = otherRegistry.services()
-      otherServices.forEach((name) => (this.registry[name] = otherRegistry.get(name)))
+      otherServices.forEach((name) => (this.registry![name] = otherRegistry.get(name)))
     }
   }
 
@@ -31,11 +31,11 @@ export class Registry {
   bind (name: string, factory: Factory, dependencies: string[] = [], isSingleton: boolean = true) {
     REG_LOG.debug(`Registering service ${name}.`)
 
-    if (this.registry[name]) {
+    if (this.registry![name]) {
       throw new Error(`A service named ${name} is already defined.`)
     }
 
-    this.registry[name] = {
+    this.registry![name] = {
       name,
       factory,
       dependencies,
@@ -44,7 +44,7 @@ export class Registry {
   }
 
   get (name: string): ServiceDefinition {
-    const service = this.registry[name]
+    const service = this.registry![name]
 
     if (!service) {
       throw new Error(`Service with name ${name} not found`)
@@ -54,14 +54,14 @@ export class Registry {
   }
 
   services (): string[] {
-    return Object.keys(this.registry)
+    return Object.keys(this.registry!)
   }
 }
 
 export class Container {
   private registry: Registry
 
-  private cache: { [name: string]: any }
+  private cache: { [name: string]: any } | undefined
 
   constructor (registry: Registry) {
     this.registry = registry
@@ -91,15 +91,15 @@ export class Container {
       return this.instantiate(definition, visited)
     }
 
-    if (this.cache[name]) {
+    if (this.cache![name]) {
       CONT_LOG.debug(`Returning cached singleton service ${name}.`)
-      return this.cache[name]
+      return this.cache![name]
     }
 
     CONT_LOG.debug(`Instantiating singleton service ${name}.`)
 
     const instance = this.instantiate(definition, visited)
-    this.cache[name] = instance
+    this.cache![name] = instance
     return instance as T
   }
 

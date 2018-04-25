@@ -11,7 +11,7 @@ export class PostgresChannelsDao implements ChannelsDao {
 
   private web3: any
 
-  private contract: Unidirectional.Contract
+  private contract: Unidirectional.Contract | undefined
 
   constructor (client: DBEngine<Client>, web3: any) {
     this.client = client
@@ -37,7 +37,7 @@ export class PostgresChannelsDao implements ChannelsDao {
       for (let i = 0; i < res.rows.length; i++) {
         const row = res.rows[i]
         const channelId = row.channelId
-        const isOpen = await contract.isOpen(channelId)
+        const isOpen = await contract!.isOpen(channelId)
 
         if (isOpen) {
           out.push(channelId)
