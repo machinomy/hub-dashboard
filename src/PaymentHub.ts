@@ -96,7 +96,7 @@ export default class PaymentHub {
     }
 
     try {
-      await this.exchangeRateService.start()
+      this.exchangeRateService.start()
     } catch (err) {
       LOG.error('Failed to start exchange rate service: {err}', {
         err

@@ -94,7 +94,9 @@ export default class ChannelWatcher extends EventEmitter {
   private async processStaleChannel (chan: PaymentChannel): Promise<boolean> {
     try {
       const channelId = chan.channelId
+      // tslint:disable-next-line:no-unnecessary-type-assertion
       const isOpen = await this.contract!.isOpen(channelId)
+      // tslint:disable-next-line:no-unnecessary-type-assertion
       const isSettling = await this.contract!.isSettling(channelId)
 
       // need the below check because Machinomy merges the smart contract state with the database state.

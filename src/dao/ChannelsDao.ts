@@ -37,6 +37,7 @@ export class PostgresChannelsDao implements ChannelsDao {
       for (let i = 0; i < res.rows.length; i++) {
         const row = res.rows[i]
         const channelId = row.channelId
+        // tslint:disable-next-line:no-unnecessary-type-assertion
         const isOpen = await contract!.isOpen(channelId)
 
         if (isOpen) {
