@@ -28,6 +28,7 @@
     "ethereumjs-util": "^5.1.5",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "fetch-ponyfill": "^6.0.2",
     "logdna": "^2.0.0",
     "machinomy": "^1.7.11",
     "path-to-regexp": "^2.2.1",
