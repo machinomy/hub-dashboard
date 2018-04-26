@@ -10,7 +10,10 @@
     "clean": "rm -rf dist",
     "build:backend": "tsc -p tsconfig.json",
     "build:frontend": "webpack",
-    "build": "yarn clean && yarn build:backend && yarn build:frontend"
+    "build": "yarn clean && yarn build:backend && yarn build:frontend",
+    "runner": "node ./dist/main.js",
+    "runner-inspect": "node --inspect ./dist/main.js",
+    "migrate": "db-migrate up all --migrations-dir node_modules/machinomy/migrations && db-migrate up all"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.5.1",
@@ -41,9 +44,13 @@
     "@types/redux-logger": "3.0.6",
     "bignumber.js": "^6.0.0",
     "classnames": "^2.2.5",
+    "connect-redis": "^3.3.3",
     "cookie-parser": "^1.4.3",
     "cookie-signature": "^1.1.0",
     "cors": "^2.8.4",
+    "db-migrate": "^0.11.1",
+    "db-migrate-pg": "^0.4.0",
+    "dotenv": "^5.0.1",
     "ethereumjs-util": "^5.1.5",
     "express": "^4.16.3",
     "express-session": "^1.15.6",

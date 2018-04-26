@@ -6,6 +6,8 @@ import { Client } from 'pg'
 import TipsDao, { PostgresTipsDao } from './dao/TipsDao'
 import { PaymentHandlerImpl } from './PaymentHandler'
 
+require('dotenv').config()
+
 const registry = new Registry()
 registry.bind('TipsDao', (engine: DBEngine<Client>, machinomy: Machinomy) => new PostgresTipsDao(engine, machinomy), ['DBEngine', 'Machinomy'])
 registry.bind('PaymentHandler', (tipsDao: TipsDao) => new PaymentHandlerImpl(tipsDao), ['TipsDao'])
@@ -16,7 +18,7 @@ const hub = new PaymentHub({
   redisUrl: process.env.REDIS_URL!,
   authRealm: 'Machinomy',
   sessionSecret: 'Zx8Vc9SZfPjOLp6pTw60J4Ppda3MWU23PqO3nWYh2tBamQPLYuKdFsTsBdJZIvN',
-  port: 8080,
+  port: parseInt(process.env.PORT!, 10),
   authDomainWhitelist: [
     'localhost'
   ],

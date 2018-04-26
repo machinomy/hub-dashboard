@@ -13,7 +13,7 @@ export class AdminApiService implements ApiService {
   }
 
   private render (req: express.Request, res: express.Response) {
-    res.sendFile(path.resolve(__dirname, '../../public/index.html'))
+    res.sendFile(path.resolve(__dirname, '../public/index.html'))
   }
 
   private setupRoutes () {
