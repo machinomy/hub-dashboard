@@ -6,17 +6,28 @@
   "author": "Machinomy",
   "license": "Apache 2.0",
   "scripts": {
-    "lint": "tslint --format stylish --project . --exclude 'node_modules/**/*.ts'"
+    "lint": "tslint --format stylish --project . --exclude 'node_modules/**/*.ts'",
+    "clean": "rm -rf dist",
+    "build:backend": "tsc -p tsconfig.json",
+    "build:frontend": "webpack",
+    "build": "yarn clean && yarn build:backend && yarn build:frontend"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
+    "html-webpack-plugin": "^3.2.0",
+    "svgo": "^1.0.5",
+    "ts-loader": "^4.2.0",
     "tslint": "^5.9.1",
     "tslint-config-standard": "^7.0.0",
     "tslint-react": "^3.5.1",
     "typescript": "2.8.1",
-    "webpack": "^4.6.0"
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15"
   },
   "dependencies": {
     "@machinomy/contracts": "^4.0.9",
+    "@machinomy/types-truffle-contract": "0.0.3",
     "@types/classnames": "^2.2.3",
     "@types/cookie-parser": "^1.4.1",
     "@types/cookie-signature": "^1.0.1",
@@ -38,7 +49,7 @@
     "express-session": "^1.15.6",
     "fetch-ponyfill": "^6.0.2",
     "logdna": "^2.0.0",
-    "machinomy": "^1.7.11",
+    "machinomy": "1.7.11",
     "path-to-regexp": "^2.2.1",
     "pg": "^7.4.1",
     "react": "16.1.0",

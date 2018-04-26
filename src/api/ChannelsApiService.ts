@@ -4,7 +4,7 @@ import Machinomy from 'machinomy'
 import { PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
 import log from '../util/log'
 import { Role } from '../Role'
-import ChannelClaimsService from '../ChannelClaimsService'
+import ChannelClaimsService from '../service/ChannelClaimsService'
 // tslint:disable-next-line:no-unused-variable
 import channelClaimToJson, { ChannelClaimStatus } from '../domain/ChannelClaim'
 

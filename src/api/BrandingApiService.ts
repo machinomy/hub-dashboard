@@ -17,11 +17,11 @@ export default class BrandingApiService implements ApiService {
 
   private doBranding (req: express.Request, res: express.Response) {
     res.send({
-      title: this.config.branding.title || '',
-      companyName: this.config.branding.companyName || '',
-      username: this.config.branding.username || '',
-      backgroundColor: this.config.branding.backgroundColor || '',
-      textColor: this.config.branding.textColor || '',
+      title: this.config.branding!.title || '',
+      companyName: this.config.branding!.companyName || '',
+      username: this.config.branding!.username || '',
+      backgroundColor: this.config.branding!.backgroundColor || '',
+      textColor: this.config.branding!.textColor || '',
       address: this.config.recipientAddress
     })
   }

@@ -100,7 +100,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
   private extractKeys (payment: EnrichedPayment) {
     return Object.keys(payment).reduce((acc: string[][], k: string) => {
       if (k === 'payment') {
-        Object.keys(payment[k]).forEach((pk: string) => acc[1].push(pk))
+        Object.keys(payment[k]!).forEach((pk: string) => acc[1].push(pk))
       } else {
         acc[0].push(k)
       }

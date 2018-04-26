@@ -48,7 +48,7 @@ export class Amount extends React.Component<AmountProps, {}> {
 
   private calculateUsd (amount: BigNumber.BigNumber) {
     const ether: BigNumber.BigNumber = this.w3.fromWei(amount, 'ether')
-    return ether.mul(this.props.ethUsdRate).toString()
+    return ether.multipliedBy(this.props.ethUsdRate).toString()
   }
 
   private appendUnit (content: string) {

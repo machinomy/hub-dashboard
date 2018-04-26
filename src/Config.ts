@@ -36,7 +36,7 @@ export default class Config {
   public sessionSecret: string = ''
   public staleChannelDays: number = 7
   public registry?: Registry
-  public branding: BrandingConfig
+  public branding: BrandingConfig | undefined
 
   static fromEnv (): Config {
     const instance = new Config()
