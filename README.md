@@ -85,9 +85,9 @@ Network ID from Ganache must be in the list and value of its key 'address' must 
  
 ## Requirements
 
-Node.js 9+
+Node.js 10
 
 yarnpkg 1.6+
 
-PostgreSQL 9+
+PostgreSQL 10
 
