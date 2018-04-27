@@ -4,7 +4,11 @@
   "private": true,
   "description": "Mission control for Machinomy Hub",
   "author": "Machinomy",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/machinomy/hub-dashboard.git"
+  },
   "scripts": {
     "lint": "tslint --format stylish --project . --exclude 'node_modules/**/*.ts'",
     "clean": "rm -rf dist",
@@ -67,6 +71,7 @@
     "redux": "3.7.2",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.2.0",
+    "upath": "^1.0.0",
     "uuid": "^3.2.1",
     "web3": "0.20.1",
     "web3-typescript-typings": "0.9.11"
