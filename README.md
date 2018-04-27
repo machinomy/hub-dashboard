@@ -91,5 +91,3 @@ yarnpkg 1.6+
 
 PostgreSQL 9+
 
-Ganache 1.1.0+
-
