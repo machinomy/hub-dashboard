@@ -51,7 +51,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
           <div className="col-4">
             <div className="card mt-5">
               <div className="card-body text-center">
-                <p>Please use your MetaMask account to sign in.</p>
+                <p>Please use your Vynos account to sign in.</p>
                 {this.renderButton()}
               </div>
             </div>
@@ -65,14 +65,14 @@ export class Login extends React.Component<LoginProps, LoginState> {
     if (this.state.isLoading) {
       return (
         <button className="btn btn-lg btn-primary" disabled={true}>
-          Opening MetaMask...
+          Opening Vynos...
         </button>
       )
     }
 
     return (
       <button className="btn btn-lg btn-primary" onClick={() => this.onLoginClick()}>
-        Sign In With MetaMask
+        Sign In With Vynos
       </button>
     )
   }

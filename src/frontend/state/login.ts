@@ -1,4 +1,5 @@
 import { AuthenticationClient } from '../../AuthenticationClient'
+import pify from '../../util/pify'
 import w3 from '../web3'
 import { ThunkAction } from 'redux-thunk'
 import { Action, AnyAction } from 'redux'
@@ -37,7 +38,8 @@ function reduceSetAddress (state: LoginState, action: SetAddressAction) {
 export function login (): ThunkAction<Promise<SetAddressAction>, LoginState, void> {
   return async (dispatch) => {
     const client = new AuthenticationClient(backend.fullHost(), w3(), fetch.bind(window))
-    const res = await client.authenticate(w3().eth.accounts[0], window.location.hostname)
+    const accounts = await pify<string[]>(cb => w3().eth.getAccounts(cb))
+    const res = await client.authenticate(accounts[0], window.location.hostname)
     return dispatch(setAddress(res.address))
   }
 }

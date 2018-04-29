@@ -1,11 +1,12 @@
+import { default as vynos } from 'vynos'
+
 const Web3 = require('web3')
 
 let w3: any = null
+vynos.ready().then(wallet => w3 = new Web3(wallet.provider))
 
-window.addEventListener('load', () => {
-  if (global.hasOwnProperty('web3')) {
-    w3 = new Web3((global as any).web3.currentProvider)
-  }
+window.addEventListener('load', async () => {
+  await vynos.display()
 })
 
 export default () => w3
