@@ -15,7 +15,7 @@ Mission control for Machinomy Hub
  ```
  And do
 ```
-1. yarn install --pure-lockfile
+1. yarn install
 2. yarn build
 3. yarn start
 ```
@@ -87,7 +87,7 @@ Network ID from Ganache must be in the list and value of its key 'address' must 
 
 Node.js 10
 
-yarnpkg 1.6+
+yarnpkg 1.6
 
 PostgreSQL 10
 
