@@ -59,7 +59,7 @@ module.exports = {
     env,
   ],
 
-  devtool: process.env.NODE_ENV === 'production' ? 'none' : 'eval-source-map',
+  devtool: process.env.NODE_ENV === 'production' ? 'none' : 'cheap-module-source-map',
 
   watchOptions: {
     ignored: /node_modules|dist/
