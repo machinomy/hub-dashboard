@@ -49,10 +49,10 @@ REDIS_URL - connection string for REDIS. redis:// prefix **is mandatory**.
 
 ## Working with local Ethereum RPC (via Ganache)
 
-1. Clone Machinomy and Machinomy-Contracts to local filesystem 
+1. Clone Machinomy and Contracts to local filesystem 
 ```
 git clone git@github.com:machinomy/machinomy.git
-git clone git@github.com:machinomy/machinomy-contracts.git
+git clone git@github.com:machinomy/contracts.git
 ```
 2. Change directory to machinomy-contracts and do yarn link, compile and deploy contracts.
 ```
