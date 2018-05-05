@@ -16,7 +16,7 @@
     "build:frontend": "webpack",
     "build": "yarn clean && yarn build:backend && yarn build:frontend",
     "start": "node ./dist/main.js",
-    "start-inspect": "node --inspect ./dist/main.js",
+    "inspect": "node --inspect ./dist/main.js",
     "migrate": "db-migrate up all --migrations-dir node_modules/machinomy/migrations && db-migrate up all"
   },
   "devDependencies": {

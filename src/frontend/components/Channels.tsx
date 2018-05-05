@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { ActionCreator, Dispatch } from 'redux'
+import camelToHuman from '../../util/camelToHuman'
 import { AppState } from '../state/store'
 import { connect } from 'react-redux'
 import bemify from '../../util/bemify'
@@ -75,23 +76,34 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       return 'Loading...'
     }
 
+    const headers = ['ID', 'Spent', 'Value', 'Sender', 'Receiver', 'State']
+
     return (
       <div className={bem('table')}>
         <table className="table table-striped">
           <thead>
-          <tr>
-            <th>ID</th>
-            <th>Spent</th>
-            <th>Value</th>
-            <th>Sender</th>
-            <th>Receiver</th>
-            <th>State</th>
-          </tr>
+          {this.renderTableHeader([...headers])}
           </thead>
           {this.renderTableBody()}
         </table>
       </div>
     )
+  }
+
+  renderTableHeader (headers: string[]) {
+    if (isEmpty(this.props.channels)) {
+      return (
+        <tr key="header"/>
+      )
+    } else {
+      return (
+        <tr key="header">
+          {headers.map((h: string) => {
+            return <th key={h}>{camelToHuman(h)}</th>
+          })}
+        </tr>
+      )
+    }
   }
 
   renderTableBody () {

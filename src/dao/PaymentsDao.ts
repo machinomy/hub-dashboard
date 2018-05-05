@@ -5,11 +5,14 @@ import { TotalsTuple } from './TipsDao'
 import { PaymentChannel, PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
 import log from '../util/log'
 import Config from '../Config'
+import Payment, { PaymentSerde } from 'machinomy/dist/lib/payment'
 
 export default interface PaymentsDao {
   totalAvailableFor (address: string): Promise<TotalsTuple>
 
   staleChannels (): Promise<PaymentChannel[]>
+
+  getAll (): Promise<Payment[]>
 }
 
 const LOG = log('PostgresPaymentsDao')
@@ -78,6 +81,15 @@ export class PostgresPaymentsDao implements PaymentsDao {
       )
       // tslint:enable:no-trailing-whitespace
       return res.rows.map(PaymentChannelSerde.instance.deserialize)
+    })
+  }
+
+  public getAll (): Promise<Payment[]> {
+    return this.engine.exec(async (c: Client) => {
+      const res = await c.query(
+        `SELECT * FROM payment;`
+      )
+      return res.rows.map(PaymentSerde.instance.deserialize)
     })
   }
 }

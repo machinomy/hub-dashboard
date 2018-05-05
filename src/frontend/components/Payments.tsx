@@ -1,11 +1,12 @@
 import * as React from 'react'
+import isEmpty from '../../util/isEmpty'
 import { EnrichedPayment, fetchPayments, SetPaymentAction } from '../state/payments'
 import { ActionCreator, Dispatch } from 'redux'
 import { AppState } from '../state/store'
 import { connect } from 'react-redux'
-import camelToHuman from '../../util/camelToHuman'
 import bemify from '../../util/bemify'
 import Amount from './Amount'
+import camelToHuman from '../../util/camelToHuman'
 
 const bem = bemify('payments')
 
@@ -58,55 +59,60 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
       return 'Loading...'
     }
 
-    const keys = this.extractKeys(this.props.payments[0])
-    const otherKeys = keys[0]
-    const paymentKeys = keys[1]
+    const headers = ['ChannelId', 'Kind', 'Token', 'Sender', 'Receiver',
+      'Price', 'Value', 'ChannelValue', 'v', 'r', 's', 'Meta', 'ContractAddress',
+      'CreatedAt', 'Exchange Rate ID', 'Withdrawal ID']
 
     return (
       <div className={bem('table')}>
         <table className="table table-striped">
           <thead>
-          {this.renderTableHeader([...otherKeys, ...paymentKeys])}
+          {this.renderTableHeader([...headers])}
           </thead>
-          <tbody>
-          {this.renderTableBody(otherKeys, paymentKeys)}
-          </tbody>
+          {this.renderTableBody(headers)}
         </table>
       </div>
     )
   }
 
-  renderTableHeader (keys: string[]) {
-    return (
-      <tr key="header">
-        {keys.map((k: string) => {
-          return <th key={k}>{camelToHuman(k)}</th>
-        })}
-      </tr>
-    )
-  }
-
-  renderTableBody (otherKeys: string[], paymentKeys: string[]) {
-    return this.props.payments.map((payment: any) => {
+  renderTableHeader (headers: string[]) {
+    if (isEmpty(this.props.payments)) {
       return (
-        <tr key={payment.payment.token}>
-          {otherKeys.map((k: string) => <td key={k}><div className={bem('other-field', k)}>{payment[k]}</div></td>)}
-          {paymentKeys.map((k: string) => this.renderPaymentKey(payment, k))}
+        <tr key="header"/>
+      )
+    } else {
+      return (
+        <tr key="header">
+          {headers.map((h: string) => {
+            return <th key={h}>{camelToHuman(h)}</th>
+          })}
         </tr>
       )
-    })
+    }
   }
 
-  private extractKeys (payment: EnrichedPayment) {
-    return Object.keys(payment).reduce((acc: string[][], k: string) => {
-      if (k === 'payment') {
-        Object.keys(payment[k]!).forEach((pk: string) => acc[1].push(pk))
-      } else {
-        acc[0].push(k)
-      }
-
-      return acc
-    }, [[], []])
+  renderTableBody (paymentKeys: string[]) {
+    if (isEmpty(this.props.payments)) {
+      return (
+        <tbody>
+        <tr>
+          <td>No payments found</td>
+        </tr>
+        </tbody>
+      )
+    } else {
+      return (
+        <tbody>
+        {
+          this.props.payments.map((payment: any) => (
+            <tr key={payment.payment.token}>
+              {paymentKeys.map((k: string) => this.renderPaymentKey(payment, k))}
+            </tr>
+          ))
+        }
+        </tbody>
+      )
+    }
   }
 
   private renderPaymentKey (payment: any, k: string) {

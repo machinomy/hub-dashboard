@@ -1,9 +1,9 @@
 import Machinomy from 'machinomy/dist'
 import * as express from 'express'
+import Payment, { PaymentSerde } from 'machinomy/dist/lib/payment'
+import PaymentsDao from '../dao/PaymentsDao'
 import { ApiService } from './ApiService'
-import { PaymentHandler } from '../PaymentHandler'
 import log from '../util/log'
-import { WithPayment } from '../domain/WithPayment'
 import ChannelWatcher from '../ChannelWatcher'
 import ExchangeRateDao from '../dao/ExchangeRateDao'
 import { ownedAddressOrAdmin } from '../util/ownedAddressOrAdmin'
@@ -17,17 +17,17 @@ export default class PaymentsApiService implements ApiService {
 
   private machinomy: Machinomy
 
-  private paymentHandler: PaymentHandler<any, any>
-
   // tslint:disable-next-line:no-unused-variable
   private exchangeRateDao: ExchangeRateDao
 
   // tslint:disable-next-line:no-unused-variable
   private channelWatcher: ChannelWatcher
 
-  constructor (machinomy: Machinomy, paymentHandler: PaymentHandler<any, any>, exchangeRateDao: ExchangeRateDao, channelWatcher: ChannelWatcher) {
+  private paymentsDao: PaymentsDao
+
+  constructor (machinomy: Machinomy, paymentDao: PaymentsDao, exchangeRateDao: ExchangeRateDao, channelWatcher: ChannelWatcher) {
     this.machinomy = machinomy
-    this.paymentHandler = paymentHandler
+    this.paymentsDao = paymentDao
     this.exchangeRateDao = exchangeRateDao
     this.channelWatcher = channelWatcher
 
@@ -44,17 +44,6 @@ export default class PaymentsApiService implements ApiService {
     if (!paymentReq) {
       LOG.warn('Payment not supplied in request body: {body}', {
         body: req.body
-      })
-      return res.sendStatus(400)
-    }
-
-    let parsedMeta
-
-    try {
-      parsedMeta = await this.paymentHandler.parseMeta(req)
-    } catch (err) {
-      LOG.warn('Failed to parse payment metadata: {err}', {
-        err
       })
       return res.sendStatus(400)
     }
@@ -83,8 +72,6 @@ export default class PaymentsApiService implements ApiService {
       return res.sendStatus(500)
     }
 
-    await this.paymentHandler.storeMeta(parsedMeta, payment)
-
     res.send({
       token: payment.token
     })
@@ -101,32 +88,17 @@ export default class PaymentsApiService implements ApiService {
       })
       return res.sendStatus(403)
     }
-
     let history
 
     try {
-      history = await this.paymentHandler.fetchHistory(targetAddr) as WithPayment[]
+      history = await this.paymentsDao.getAll()
     } catch (err) {
       LOG.error('Failed to fetch payment history: {err}', {
         err
       })
       return res.sendStatus(500)
     }
-
-    const data = history.map((item: any) => Object.keys(item).reduce((acc: any, k: string) => {
-      if (k === 'payment') {
-        acc.payment = {
-          channelId: item.payment.channelId,
-          sender: item.payment.sender,
-          price: item.payment.price.toString(),
-          token: item.payment.token
-        }
-      } else {
-        acc[k] = item[k]
-      }
-
-      return acc
-    }, {}))
+    const data = history.map((payment: Payment) => PaymentSerde.instance.serialize(payment))
 
     res.send(data)
   }

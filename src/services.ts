@@ -7,7 +7,6 @@ import { ApiService } from './api/ApiService'
 import BrandingApiService from './api/BrandingApiService'
 import { default as DBEngine, PostgresDBEngine } from './DBEngine'
 import { Store } from 'express-session'
-import { PaymentHandler } from './PaymentHandler'
 import PaymentsApiService from './api/PaymentsApiService'
 import ChannelWatcher from './ChannelWatcher'
 import { AdminApiService } from './api/AdminApiService'
@@ -33,7 +32,7 @@ export default function defaultRegistry (otherRegistry?: Registry): Registry {
   registry.bind('CRAuthManager', (web3: any) => new MemoryCRAuthManager(web3), ['Web3'])
   registry.bind('AuthApiService', (crManager: CRAuthManager, store: Store, config: Config) => new AuthApiService(crManager, store, config), ['CRAuthManager', 'SessionStore', 'Config'])
   registry.bind('BrandingApiService', (config: Config) => new BrandingApiService(config), ['Config'])
-  registry.bind('PaymentsApiService', (machinomy: Machinomy, ph: PaymentHandler<any, any>, er: ExchangeRateDao, cw: ChannelWatcher) => new PaymentsApiService(machinomy, ph, er, cw), ['Machinomy', 'PaymentHandler', 'ExchangeRateDao', 'ChannelWatcher'])
+  registry.bind('PaymentsApiService', (machinomy: Machinomy, paymentsDao: PaymentsDao, er: ExchangeRateDao, cw: ChannelWatcher) => new PaymentsApiService(machinomy, paymentsDao, er, cw), ['Machinomy', 'PaymentsDao', 'ExchangeRateDao', 'ChannelWatcher'])
   registry.bind('ChannelsApiService', (machinomy: Machinomy, claimsService: ChannelClaimsService) => new ChannelsApiService(machinomy, claimsService), ['Machinomy', 'ChannelClaimsService'])
   registry.bind('AccountsApiService', (paymentsDao: PaymentsDao, wdService: WithdrawalsService, exRateDao: ExchangeRateDao, chDao: ChannelsDao) => new AccountsApiService(paymentsDao, wdService, exRateDao, chDao), ['PaymentsDao', 'WithdrawalsService', 'ExchangeRateDao', 'ChannelsDao'])
   registry.bind('ExchangeRateApiService', (exRateDao: ExchangeRateDao) => new ExchangeRateApiService(exRateDao), ['ExchangeRateDao'])
