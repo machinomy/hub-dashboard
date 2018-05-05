@@ -1,8 +1,10 @@
 export async function getJSON (url: string): Promise<any> {
   const res = await fetch(url, {
     credentials: 'same-origin'
+  }).catch((error: any) => {
+    console.error(error)
   })
-  return res.json()
+  return res && res.ok === true ? res.json() : Promise.resolve({})
 }
 
 export async function postJSON (url: string, data: any): Promise<any> {
@@ -13,8 +15,10 @@ export async function postJSON (url: string, data: any): Promise<any> {
     },
     method: 'POST',
     credentials: 'same-origin'
+  }).catch((error: any) => {
+    console.error(error)
   })
-  return res.json()
+  return res && res.ok === true ? res.json() : Promise.resolve({})
 }
 
 export function fullHost () {

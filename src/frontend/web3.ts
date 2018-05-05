@@ -1,4 +1,4 @@
-import { default as vynos } from 'vynos'
+import vynos from 'vynos'
 
 const Web3 = require('web3')
 

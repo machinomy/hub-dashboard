@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import bemify from '../../util/bemify'
 import { Channel, fetchChannels, SetChannelAction } from '../state/channels'
 import Amount from './Amount'
+import isEmpty from '../../util/isEmpty'
 
 const bem = bemify('channels')
 
@@ -87,20 +88,34 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
             <th>State</th>
           </tr>
           </thead>
-          <tbody>
           {this.renderTableBody()}
-          </tbody>
         </table>
       </div>
     )
   }
 
   renderTableBody () {
-    return this.props.channels.map((c: Channel) => (
-      <tr key={c.channelId}>
-        {FIELDS.map((field: string) => <td key={field}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</td>)}
-      </tr>
-    ))
+    if (isEmpty(this.props.channels)) {
+      return (
+        <tbody>
+          <tr>
+            <td>No channels found</td>
+          </tr>
+        </tbody>
+      )
+    } else {
+      return (
+        <tbody>
+        {
+          this.props.channels.map((c: Channel) => (
+            <tr key={c.channelId}>
+              {FIELDS.map((field: string) => <td key={field}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</td>)}
+            </tr>
+          ))
+        }
+        </tbody>
+      )
+    }
   }
 }
 
