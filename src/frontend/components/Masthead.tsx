@@ -41,9 +41,6 @@ export default class Masthead extends React.Component<{}, {}> {
               <CustomLink to="/admin/channels">
                 Channels
               </CustomLink>
-              <CustomLink to="/admin/global-settings">
-                Global Settings
-              </CustomLink>
             </ul>
             <UnitsDropdown />
           </div>
