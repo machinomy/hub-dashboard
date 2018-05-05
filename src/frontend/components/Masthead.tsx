@@ -41,6 +41,7 @@ export default class Masthead extends React.Component<{}, {}> {
               <CustomLink to="/admin/channels">
                 Channels
               </CustomLink>
+              <a href="javascript:vynos.display();">Vynos</a>
             </ul>
             <UnitsDropdown />
           </div>

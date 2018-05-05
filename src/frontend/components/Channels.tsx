@@ -120,7 +120,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
         <tbody>
         {
           this.props.channels.map((c: Channel) => (
-            <tr key={c.channelId}>
+            <tr style={{ fontSize: '9pt' }} key={c.channelId}>
               {FIELDS.map((field: string) => <td key={field}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</td>)}
             </tr>
           ))

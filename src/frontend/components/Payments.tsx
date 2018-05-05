@@ -59,9 +59,9 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
       return 'Loading...'
     }
 
-    const headers = ['ChannelId', 'Kind', 'Token', 'Sender', 'Receiver',
-      'Price', 'Value', 'ChannelValue', 'v', 'r', 's', 'Meta', 'ContractAddress',
-      'CreatedAt', 'Exchange Rate ID', 'Withdrawal ID']
+    const headers = ['channelId', 'kind', 'token', 'sender', 'receiver',
+      'price', 'value', 'channelValue', 'v', 'r', 's', 'meta', 'contractAddress',
+      'createdAt']
 
     return (
       <div className={bem('table')}>
@@ -105,7 +105,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
         <tbody>
         {
           this.props.payments.map((payment: any) => (
-            <tr key={payment.payment.token}>
+            <tr style={{ fontSize: '9pt' }} key={payment.token}>
               {paymentKeys.map((k: string) => this.renderPaymentKey(payment, k))}
             </tr>
           ))
@@ -119,13 +119,13 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
     if (k === 'price') {
       return (
         <td key={k}>
-          <div className={bem('payment-field', k)}><Amount wei={payment.payment[k]} /></div>
+          <div className={bem('payment-field', k)}><Amount wei={payment[k]} /></div>
         </td>
       )
     }
 
     return (
-      <td key={k}><div className={bem('payment-field', k)}>{payment.payment[k]}</div></td>
+      <td key={k}><div className={bem('payment-field', k)}>{payment[k]}</div></td>
     )
   }
 }
