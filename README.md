@@ -23,7 +23,17 @@ or
 ```
 3. yarn start-inspect 
 ```
-for Node.js-debugging in Chrome
+for Node.js-debugging in Chrome.
+
+
+URL guide:
+
+/admin/login - Login
+
+/admin/payments - Payments
+
+/admin/channels - Channels
+
 
 ## Settings file (.env file)
 
@@ -36,7 +46,7 @@ PORT=5005
 DATABASE_URL=postgresql://paymenthub:1@localhost/PaymentHub
 REDIS_URL=redis://127.0.0.1:6379
 ```
-WALLET_ADDRESS - 0x-prefixed Ethereum-address
+WALLET_ADDRESS - 0x-prefixed **admin** Ethereum-address (for sign in via Vynos)
 
 ETH_RPC_URL - URL of Ethereum RPC (you can use local Ganache, 
 but ensure you correctly deployed machinomy-contracts, see instructions below)
