@@ -122,6 +122,12 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
           <div className={bem('payment-field', k)}><Amount wei={payment[k]} /></div>
         </td>
       )
+    } else if (k === 'createdAt') {
+      return (
+        <td key={k}>
+          <div className={bem('payment-field', k)}>{new Date(payment[k]).toLocaleString()}</div>
+        </td>
+      )
     }
 
     return (
