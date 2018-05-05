@@ -25,7 +25,7 @@ const hub = new PaymentHub({
   recipientAddress: process.env.WALLET_ADDRESS!,
   hotWalletAddress: process.env.WALLET_ADDRESS!,
   adminAddresses: [
-    process.env.WALLET_ADDRESS!
+    process.env.WALLET_ADDRESS!.toLowerCase()
   ],
   registry,
   branding: {
