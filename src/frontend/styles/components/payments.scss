@@ -1,6 +1,4 @@
-.payments__table {
-  overflow-x: scroll;
-}
+.payments__table { }
 
 .payments__payment-field--channelId, .payments__payment-field--sender, .payments__payment-field--token {
   white-space: nowrap;
@@ -14,4 +12,8 @@
 
 .payments__payment-field--sender {
   max-width: 200px;
+}
+
+.table thead th {
+  text-align: center;
 }

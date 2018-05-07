@@ -1,6 +1,4 @@
-.channels__table {
-  overflow-x: scroll;
-}
+.channels__table { }
 
 .channels__table-state-cell-text_open {
   font-weight: bolder;
@@ -15,4 +13,8 @@
 .channels__table-state-cell-text_settled {
   font-weight: bolder;
   color: red;
+}
+
+.table thead th {
+  text-align: center;
 }
