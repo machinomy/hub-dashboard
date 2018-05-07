@@ -21,7 +21,7 @@ Mission control for Machinomy Hub
 ```
 or 
 ```
-3. yarn start-inspect 
+3. yarn inspect 
 ```
 for Node.js-debugging in Chrome.
 
