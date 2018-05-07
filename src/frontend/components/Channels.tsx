@@ -25,7 +25,7 @@ export interface ChannelsState {
   isLoading: boolean
 }
 
-const FIELDS = ['channelId', 'spent', 'value', 'sender', 'receiver', 'state']
+const FIELDS = ['channelId', 'spent', 'value', 'sender', 'state']
 
 const MONEY_RENDERER = (channel: Channel, field: string) => {
   return <Amount wei={(channel as any)[field]} />
@@ -76,7 +76,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       return 'Loading...'
     }
 
-    const headers = ['ID', 'Spent', 'Value', 'Sender', 'Receiver', 'State']
+    const headers = ['ID', 'Spent', 'Value', 'Sender', 'State']
 
     return (
       <div className={bem('table')}>

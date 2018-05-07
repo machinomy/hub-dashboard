@@ -1,7 +1,7 @@
 import * as express from 'express'
 import { ApiService } from './ApiService'
 import Machinomy from 'machinomy'
-import { PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
+import { PaymentChannel, PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
 import log from '../util/log'
 import { Role } from '../Role'
 import ChannelClaimsService from '../service/ChannelClaimsService'
@@ -45,6 +45,10 @@ export default class ChannelsApiService implements ApiService {
 
       return res.sendStatus(500)
     }
+
+    channels.map((channel: PaymentChannel) => {
+      delete channel.receiver
+    })
 
     res.send(channels.map(PaymentChannelSerde.instance.serialize.bind(PaymentChannelSerde.instance)))
   }
