@@ -5,6 +5,8 @@ import store from './state/store'
 import App from './components/App'
 import { BrowserRouter } from 'react-router-dom'
 
+require('../frontend/styles/index.scss')
+
 ReactDOM.render(
   <Provider store={store}>
     <App Router={BrowserRouter} />

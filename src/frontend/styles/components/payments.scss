@@ -1,0 +1,17 @@
+.payments__table {
+  overflow-x: scroll;
+}
+
+.payments__payment-field--channelId, .payments__payment-field--sender, .payments__payment-field--token {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.payments__payment-field--channelId, .payments__payment-field--token {
+  max-width: 200px;
+}
+
+.payments__payment-field--sender {
+  max-width: 200px;
+}

@@ -1,0 +1,18 @@
+.channels__table {
+  overflow-x: scroll;
+}
+
+.channels__table-state-cell-text_open {
+  font-weight: bolder;
+  color: green;
+}
+
+.channels__table-state-cell-text_settling {
+  font-style: italic;
+  color: yellow;
+}
+
+.channels__table-state-cell-text_settled {
+  font-weight: bolder;
+  color: red;
+}

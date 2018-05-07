@@ -31,6 +31,15 @@ const MONEY_RENDERER = (channel: Channel, field: string) => {
   return <Amount wei={(channel as any)[field]} />
 }
 
+const STATE_RENDERER = (channel: Channel, field: string) => {
+  switch ((channel as any)[field]) {
+    case 0: return <span className="channels__table-state-cell-text_open">Open</span>
+    case 1: return <span className="channels__table-state-cell-text_settling">Settling</span>
+    case 2: return <span className="channels__table-state-cell-text_settled">Settled</span>
+    default: return ''
+  }
+}
+
 interface FieldRenderer {
   [key: string]: (channel: Channel, field: string) => any
 }
@@ -38,6 +47,7 @@ interface FieldRenderer {
 const FIELD_RENDERERS = {
   spent: MONEY_RENDERER,
   value: MONEY_RENDERER,
+  state: STATE_RENDERER,
   _: (channel: Channel, field: string) => (channel as any)[field]
 } as FieldRenderer
 
