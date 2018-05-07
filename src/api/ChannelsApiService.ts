@@ -1,12 +1,13 @@
 import * as express from 'express'
+import PaymentsDao from '../dao/PaymentsDao'
 import { ApiService } from './ApiService'
 import Machinomy from 'machinomy'
-import { PaymentChannel, PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
+import { PaymentChannelJSON, PaymentChannelSerde } from 'machinomy/dist/lib/payment_channel'
 import log from '../util/log'
 import { Role } from '../Role'
 import ChannelClaimsService from '../service/ChannelClaimsService'
 // tslint:disable-next-line:no-unused-variable
-import channelClaimToJson, { ChannelClaimStatus } from '../domain/ChannelClaim'
+import channelClaimToJson from '../domain/ChannelClaim'
 
 const LOG = log('ChannelsApiService')
 
@@ -19,9 +20,12 @@ export default class ChannelsApiService implements ApiService {
 
   private claimService: ChannelClaimsService
 
-  constructor (machinomy: Machinomy, claimService: ChannelClaimsService) {
+  private paymentsDao: PaymentsDao
+
+  constructor (machinomy: Machinomy, claimService: ChannelClaimsService, paymentsDao: PaymentsDao) {
     this.machinomy = machinomy
     this.claimService = claimService
+    this.paymentsDao = paymentsDao
 
     this.doOpenChannels = this.doOpenChannels.bind(this)
     this.doClaimStatus = this.doClaimStatus.bind(this)
@@ -46,11 +50,14 @@ export default class ChannelsApiService implements ApiService {
       return res.sendStatus(500)
     }
 
-    channels.map((channel: PaymentChannel) => {
-      delete channel.receiver
-    })
+    let data: any[] = await channels.map(PaymentChannelSerde.instance.serialize.bind(PaymentChannelSerde.instance))
+    let newData: PaymentChannelJSON[] = []
 
-    res.send(channels.map(PaymentChannelSerde.instance.serialize.bind(PaymentChannelSerde.instance)))
+    for (let i = 0; i < data.length; i++) {
+      newData.push(Object.assign(data[i], { lastPayment: await this.paymentsDao.getLastPaymentForChannel(data[i].channelId) }))
+    }
+
+    res.send(newData)
   }
 
   private async doClaimStatus (req: express.Request, res: express.Response) {

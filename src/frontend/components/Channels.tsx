@@ -25,7 +25,7 @@ export interface ChannelsState {
   isLoading: boolean
 }
 
-const FIELDS = ['channelId', 'spent', 'value', 'sender', 'state']
+const FIELDS = ['channelId', 'spent', 'value', 'sender', 'state', 'lastPayment']
 
 const MONEY_RENDERER = (channel: Channel, field: string) => {
   return <Amount wei={(channel as any)[field]} />
@@ -40,6 +40,14 @@ const STATE_RENDERER = (channel: Channel, field: string) => {
   }
 }
 
+const DATETIME_RENDERER = (channel: Channel, field: string) => {
+  return (channel as any)[field] ? new Date((channel as any)[field]).toLocaleString() : 'never'
+}
+
+const LAST_PAYMENT_RENDERER = (channel: Channel, field: string) => {
+  return (channel as any)[field] ? new Date((channel as any)[field]['createdAt']).toLocaleString() : 'never'
+}
+
 interface FieldRenderer {
   [key: string]: (channel: Channel, field: string) => any
 }
@@ -48,6 +56,8 @@ const FIELD_RENDERERS = {
   spent: MONEY_RENDERER,
   value: MONEY_RENDERER,
   state: STATE_RENDERER,
+  createdAt: DATETIME_RENDERER,
+  lastPayment: LAST_PAYMENT_RENDERER,
   _: (channel: Channel, field: string) => (channel as any)[field]
 } as FieldRenderer
 
@@ -86,7 +96,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       return 'Loading...'
     }
 
-    const headers = ['ID', 'Spent', 'Value', 'Sender', 'State']
+    const headers = ['ID', 'Spent', 'Value', 'Sender', 'State', 'Last Payment']
 
     return (
       <div className={bem('table')}>

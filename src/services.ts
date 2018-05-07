@@ -33,7 +33,7 @@ export default function defaultRegistry (otherRegistry?: Registry): Registry {
   registry.bind('AuthApiService', (crManager: CRAuthManager, store: Store, config: Config) => new AuthApiService(crManager, store, config), ['CRAuthManager', 'SessionStore', 'Config'])
   registry.bind('BrandingApiService', (config: Config) => new BrandingApiService(config), ['Config'])
   registry.bind('PaymentsApiService', (machinomy: Machinomy, paymentsDao: PaymentsDao, er: ExchangeRateDao, cw: ChannelWatcher) => new PaymentsApiService(machinomy, paymentsDao, er, cw), ['Machinomy', 'PaymentsDao', 'ExchangeRateDao', 'ChannelWatcher'])
-  registry.bind('ChannelsApiService', (machinomy: Machinomy, claimsService: ChannelClaimsService) => new ChannelsApiService(machinomy, claimsService), ['Machinomy', 'ChannelClaimsService'])
+  registry.bind('ChannelsApiService', (machinomy: Machinomy, claimsService: ChannelClaimsService, paymentsDao: PaymentsDao) => new ChannelsApiService(machinomy, claimsService, paymentsDao), ['Machinomy', 'ChannelClaimsService', 'PaymentsDao'])
   registry.bind('AccountsApiService', (paymentsDao: PaymentsDao, wdService: WithdrawalsService, exRateDao: ExchangeRateDao, chDao: ChannelsDao) => new AccountsApiService(paymentsDao, wdService, exRateDao, chDao), ['PaymentsDao', 'WithdrawalsService', 'ExchangeRateDao', 'ChannelsDao'])
   registry.bind('ExchangeRateApiService', (exRateDao: ExchangeRateDao) => new ExchangeRateApiService(exRateDao), ['ExchangeRateDao'])
   registry.bind('WithdrawalsApiService', (dao: WithdrawalsDao) => new WithdrawalsApiService(dao), ['WithdrawalsDao'])

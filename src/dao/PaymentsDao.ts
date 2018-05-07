@@ -13,6 +13,10 @@ export default interface PaymentsDao {
   staleChannels (): Promise<PaymentChannel[]>
 
   getAll (): Promise<Payment[]>
+
+  getPaymentsForChannel (channelId: string): Promise<Payment[]>
+
+  getLastPaymentForChannel (channelId: string): Promise<Payment>
 }
 
 const LOG = log('PostgresPaymentsDao')
@@ -90,6 +94,24 @@ export class PostgresPaymentsDao implements PaymentsDao {
         `SELECT * FROM payment;`
       )
       return res.rows.map(PaymentSerde.instance.deserialize)
+    })
+  }
+
+  public getPaymentsForChannel (channelId: string): Promise<Payment[]> {
+    return this.engine.exec(async (c: Client) => {
+      const res = await c.query(
+        `SELECT * FROM payment WHERE "channelId" = '${channelId}' ORDER BY "createdAt" ASC;`
+      )
+      return res.rows.map(PaymentSerde.instance.deserialize)
+    })
+  }
+
+  public getLastPaymentForChannel (channelId: string): Promise<Payment> {
+    return this.engine.exec(async (c: Client) => {
+      const res = await c.query(
+        `SELECT * FROM payment WHERE "channelId" = '${channelId}' ORDER BY "createdAt" DESC LIMIT 1;`
+      )
+      return res.rows.map(PaymentSerde.instance.deserialize)[0]
     })
   }
 }
