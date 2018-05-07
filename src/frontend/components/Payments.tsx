@@ -59,9 +59,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
       return 'Loading...'
     }
 
-    const headers = ['channelId', 'kind', 'token', 'sender', 'receiver',
-      'price', 'value', 'channelValue', 'v', 'r', 's', 'meta', 'contractAddress',
-      'createdAt']
+    const headers = ['channelId', 'sender', 'price', 'value', 'channelValue', 'meta', 'createdAt']
 
     return (
       <div className={bem('table')}>
@@ -116,7 +114,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
   }
 
   private renderPaymentKey (payment: any, k: string) {
-    if (k === 'price') {
+    if (k === 'price' || k === 'value' || k === 'channelValue') {
       return (
         <td key={k}>
           <div className={bem('payment-field', k)}><Amount wei={payment[k]} /></div>
