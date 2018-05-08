@@ -1,5 +1,11 @@
 .channels__table { }
 
+.channels__channel-field--channelId, .channels__channel-field--sender {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .channels__table-state-cell-text_open {
   font-weight: bolder;
   color: green;

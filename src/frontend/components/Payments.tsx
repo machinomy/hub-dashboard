@@ -129,7 +129,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
     }
 
     return (
-      <td key={k}><div className={bem('payment-field', k)}>{payment[k]}</div></td>
+      <td key={k}><div title={payment[k]} className={bem('payment-field', k)}>{payment[k]}</div></td>
     )
   }
 }

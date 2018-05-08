@@ -141,7 +141,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
         {
           this.props.channels.map((c: Channel) => (
             <tr style={{ fontSize: '9pt' }} key={c.channelId}>
-              {FIELDS.map((field: string) => <td key={field}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</td>)}
+              {FIELDS.map((field: string) => <td key={field}><div title={FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)} className={bem('channel-field', field)}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</div></td>)}
             </tr>
           ))
         }
