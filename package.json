@@ -65,7 +65,7 @@
     "express-session": "^1.15.6",
     "fetch-ponyfill": "^6.0.2",
     "logdna": "^2.0.0",
-    "machinomy": "1.7.11",
+    "machinomy": "^1.8.1",
     "path-to-regexp": "^2.2.1",
     "pg": "^7.4.1",
     "react": "16.1.0",
