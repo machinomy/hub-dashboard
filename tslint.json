@@ -7,6 +7,7 @@
     "quotemark": [true, "single", "jsx-double"],
     "no-floating-promises": [false], // TODO Remove it
     "jsx-no-lambda": [false], // TODO Remove it
-    "jsx-no-multiline-js": [false] // TODO Remove it
+    "jsx-no-multiline-js": [false], // TODO Remove it
+    "jsx-no-bind": [false] // TODO Remove it
   }
 }
