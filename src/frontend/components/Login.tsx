@@ -4,6 +4,7 @@ import { ActionCreator, Dispatch } from 'redux'
 import { login, SetAddressAction } from '../state/login'
 import { AppState } from '../state/store'
 import { RouteComponentProps, withRouter } from 'react-router'
+import vynos from 'vynos'
 
 export interface StateProps {
   address: string | null
@@ -17,6 +18,7 @@ export interface LoginProps extends StateProps, DispatchProps, RouteComponentPro
 
 export interface LoginState {
   isLoading: boolean
+  isVynosLoggedIn: boolean
 }
 
 export class Login extends React.Component<LoginProps, LoginState> {
@@ -24,12 +26,14 @@ export class Login extends React.Component<LoginProps, LoginState> {
     super(props)
 
     this.state = {
-      isLoading: false
+      isLoading: false,
+      isVynosLoggedIn: false
     }
   }
 
   async onLoginClick () {
     this.setState({
+      ...this.state,
       isLoading: true
     })
 
@@ -39,12 +43,21 @@ export class Login extends React.Component<LoginProps, LoginState> {
     } catch (e) {
       console.error(e)
       this.setState({
+        ...this.state,
         isLoading: false
       })
     }
   }
 
   render () {
+    vynos.ready().then(wallet => {
+      wallet.initAccount().then(() => {
+        this.setState({
+          ...this.state,
+          isVynosLoggedIn: true
+        })
+      })
+    })
     return (
       <div className="container-fixed">
         <div className="row justify-content-center">
@@ -71,7 +84,7 @@ export class Login extends React.Component<LoginProps, LoginState> {
     }
 
     return (
-      <button className="btn btn-lg btn-primary" onClick={() => this.onLoginClick()}>
+      <button className="btn btn-lg btn-primary" disabled={!this.state.isVynosLoggedIn} onClick={() => this.onLoginClick()}>
         Sign In With Vynos
       </button>
     )
