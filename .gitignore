@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/node,webstorm+all
 
 ### Node ###
@@ -133,3 +132,4 @@ modules.xml
 # End of https://www.gitignore.io/api/node,webstorm+all
 
 dist/
+database.json
