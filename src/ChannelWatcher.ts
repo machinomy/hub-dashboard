@@ -2,7 +2,7 @@ import Machinomy from 'machinomy'
 import log from './util/log'
 import { Unidirectional } from '@machinomy/contracts'
 import { EventEmitter } from 'events'
-import { PaymentChannel } from 'machinomy/dist/lib/payment_channel'
+import { PaymentChannel } from 'machinomy/dist/lib/PaymentChannel'
 import PaymentsDao from './dao/PaymentsDao'
 
 const LOG = log('ChannelWatcher')

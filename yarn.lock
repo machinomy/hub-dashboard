@@ -12,30 +12,37 @@
     truffle-contract "^3.0.0"
     web3 "^0.20.1"
 
-"@machinomy/types-browser-passworder@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@machinomy/types-browser-passworder/-/types-browser-passworder-0.0.6.tgz#6b09150e7dd120e08199afa0965c91ece2595ff3"
+"@machinomy/types-bn@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@machinomy/types-bn/-/types-bn-0.0.3.tgz#4fc4302281f931fb7f1bdadd3fbdf172dd15aa10"
   dependencies:
-    "@machinomy/types-safe-buffer" "^0.0.1"
+    bn.js "4.11.7"
+    safe-buffer "^5.1.2"
+
+"@machinomy/types-browser-passworder@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@machinomy/types-browser-passworder/-/types-browser-passworder-0.0.7.tgz#94823bd749d19871701d6aabb737a9fb9f007bb4"
+  dependencies:
     safe-buffer "^5.1.1"
 
-"@machinomy/types-eth-sig-util@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@machinomy/types-eth-sig-util/-/types-eth-sig-util-0.0.6.tgz#b10e38905e6db10e8795e0d1084216dc02d2b5ec"
-  dependencies:
-    "@machinomy/types-safe-buffer" "^0.0.1"
-
-"@machinomy/types-ethereumjs-tx@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@machinomy/types-ethereumjs-tx/-/types-ethereumjs-tx-0.0.6.tgz#c903780e88f837eb583798a23f7ceab339372dbb"
-  dependencies:
-    "@machinomy/types-safe-buffer" "^0.0.1"
-
-"@machinomy/types-ethereumjs-wallet@^0.0.7":
+"@machinomy/types-eth-sig-util@^0.0.7":
   version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@machinomy/types-ethereumjs-wallet/-/types-ethereumjs-wallet-0.0.7.tgz#88d385c674e542ae397639bc3e52e18fe4c98997"
+  resolved "https://registry.yarnpkg.com/@machinomy/types-eth-sig-util/-/types-eth-sig-util-0.0.7.tgz#5cf2b63b1029ae16123a83ab9ded15935d555863"
   dependencies:
-    "@machinomy/types-safe-buffer" "^0.0.1"
+    safe-buffer "^5.1.2"
+
+"@machinomy/types-ethereumjs-tx@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@machinomy/types-ethereumjs-tx/-/types-ethereumjs-tx-0.0.7.tgz#05bd639fdb2943817c46fd501fcca6e641bb9da8"
+  dependencies:
+    safe-buffer "^5.1.2"
+
+"@machinomy/types-ethereumjs-wallet@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@machinomy/types-ethereumjs-wallet/-/types-ethereumjs-wallet-0.0.12.tgz#6512c287d2b7662bb3562a8c755e6b3bc5e13711"
+  dependencies:
+    ethereumjs-wallet "^0.6.0"
+    safe-buffer "^5.1.2"
 
 "@machinomy/types-readable-stream@^0.0.2":
   version "0.0.2"
@@ -44,10 +51,6 @@
     "@types/events" "^1.2.0"
     "@types/node" "^9.6.2"
     readable-stream "^2.3.2"
-
-"@machinomy/types-safe-buffer@^0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@machinomy/types-safe-buffer/-/types-safe-buffer-0.0.1.tgz#bf80d94a2cc90b9d8438749aa3542dbf7a1f72b0"
 
 "@machinomy/types-truffle-contract@0.0.3", "@machinomy/types-truffle-contract@^0.0.3":
   version "0.0.3"
@@ -71,26 +74,16 @@
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@types/bignumber.js/-/bignumber.js-4.0.3.tgz#e8ce5f28c3025a01c6af7fc6d944494903a9e348"
 
-"@types/body-parser@*", "@types/body-parser@^1.16.4":
+"@types/body-parser@*":
   version "1.16.8"
   resolved "https://registry.yarnpkg.com/@types/body-parser/-/body-parser-1.16.8.tgz#687ec34140624a3bec2b1a8ea9268478ae8f3be3"
   dependencies:
     "@types/express" "*"
     "@types/node" "*"
 
-"@types/caseless@*":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.1.tgz#9794c69c8385d0192acc471a540d1f8e0d16218a"
-
 "@types/classnames@^2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.3.tgz#3f0ff6873da793870e20a260cada55982f38a9e5"
-
-"@types/commander@^2.9.1":
-  version "2.12.2"
-  resolved "https://registry.yarnpkg.com/@types/commander/-/commander-2.12.2.tgz#183041a23842d4281478fa5d23c5ca78e6fd08ae"
-  dependencies:
-    commander "*"
 
 "@types/cookie-parser@^1.4.1":
   version "1.4.1"
@@ -108,17 +101,9 @@
   dependencies:
     "@types/express" "*"
 
-"@types/debug@^0.0.30":
-  version "0.0.30"
-  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.30.tgz#dc1e40f7af3b9c815013a7860e6252f6352a84df"
-
 "@types/events@*", "@types/events@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
-
-"@types/expect@^1.20.3":
-  version "1.20.3"
-  resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.3.tgz#a99d059ace4bd051332faf03f5b4b4266149a501"
 
 "@types/express-serve-static-core@*":
   version "4.11.1"
@@ -135,19 +120,13 @@
     "@types/express" "*"
     "@types/node" "*"
 
-"@types/express@*", "@types/express@^4.0.36":
+"@types/express@*":
   version "4.11.1"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.11.1.tgz#f99663b3ab32d04cb11db612ef5dd7933f75465b"
   dependencies:
     "@types/body-parser" "*"
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
-
-"@types/form-data@*":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-2.2.1.tgz#ee2b3b8eaa11c0938289953606b745b738c54b1e"
-  dependencies:
-    "@types/node" "*"
 
 "@types/history@*":
   version "4.6.2"
@@ -156,10 +135,6 @@
 "@types/mime@*":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.0.tgz#5a7306e367c539b9f6543499de8dd519fac37a8b"
-
-"@types/nedb@^1.8.3":
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/@types/nedb/-/nedb-1.8.5.tgz#badacf5f70e8c4ae1d6c3ad09dddc055ed2e044f"
 
 "@types/node@*":
   version "9.6.6"
@@ -232,25 +207,12 @@
   dependencies:
     redux "^3.6.0"
 
-"@types/request@^2.0.13":
-  version "2.47.0"
-  resolved "https://registry.yarnpkg.com/@types/request/-/request-2.47.0.tgz#76a666cee4cb85dcffea6cd4645227926d9e114e"
-  dependencies:
-    "@types/caseless" "*"
-    "@types/form-data" "*"
-    "@types/node" "*"
-    "@types/tough-cookie" "*"
-
 "@types/serve-static@*":
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.1.tgz#1d2801fa635d274cd97d4ec07e26b21b44127492"
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
-
-"@types/tough-cookie@*":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.2.tgz#e0d481d8bb282ad8a8c9e100ceb72c995fb5e709"
 
 "@types/uuid@^3.4.3":
   version "3.4.3"
@@ -1330,7 +1292,7 @@ bn.js@4.11.7:
   version "4.11.7"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.7.tgz#ddb048e50d9482790094c13eb3fcfc833ce7ab46"
 
-bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.10.0, bn.js@^4.11.0, bn.js@^4.11.3, bn.js@^4.11.6, bn.js@^4.11.7, bn.js@^4.4.0, bn.js@^4.8.0:
+bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.10.0, bn.js@^4.11.0, bn.js@^4.11.3, bn.js@^4.11.6, bn.js@^4.4.0, bn.js@^4.8.0:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
 
@@ -1518,17 +1480,9 @@ bs58check@^1.0.8:
     bs58 "^3.1.0"
     create-hash "^1.1.0"
 
-bson@~1.0.4:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-1.0.6.tgz#444db59ddd4c24f0cb063aabdc5c8c7b0ceca912"
-
 buffer-from@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.0.0.tgz#4cb8832d23612589b0406e9e2956c17f06fdf531"
-
-buffer-shims@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
 
 buffer-to-arraybuffer@^0.0.5:
   version "0.0.5"
@@ -1950,7 +1904,7 @@ combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@*, commander@2.15.x, commander@^2.12.1, commander@^2.9.0, commander@~2.15.0:
+commander@2.15.x, commander@^2.12.1, commander@^2.9.0, commander@~2.15.0:
   version "2.15.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
 
@@ -2185,12 +2139,6 @@ crypto-js@^3.1.9-1:
   version "3.1.9-1"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.1.9-1.tgz#fda19e761fc077e01ffbfdc6e9fdfc59e8806cd8"
 
-crypto-price@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/crypto-price/-/crypto-price-0.0.4.tgz#824bd459b6901a759a4875862c5007610186b19f"
-  dependencies:
-    request "^2.81.0"
-
 css-color-names@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
@@ -2421,6 +2369,10 @@ debug@^3.1.0:
 decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
+
+decko@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/decko/-/decko-1.2.0.tgz#fd43c735e967b8013306884a56fbe665996b6817"
 
 decode-uri-component@^0.2.0:
   version "0.2.0"
@@ -2770,10 +2722,6 @@ es-to-primitive@^1.1.1:
     is-callable "^1.1.1"
     is-date-object "^1.0.1"
     is-symbol "^1.0.1"
-
-es6-promise@3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/es6-promise/-/es6-promise-3.2.1.tgz#ec56233868032909207170c39448e24449dd1fc4"
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -3180,13 +3128,7 @@ fetch-ponyfill@^4.0.0:
   dependencies:
     node-fetch "~1.7.1"
 
-fetch-ponyfill@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/fetch-ponyfill/-/fetch-ponyfill-5.0.1.tgz#2789ec179c1de357f60f9fd49e154a8b3fd8cd1b"
-  dependencies:
-    node-fetch "~2.0.0"
-
-fetch-ponyfill@^6.0.2:
+fetch-ponyfill@^6.0.0, fetch-ponyfill@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/fetch-ponyfill/-/fetch-ponyfill-6.0.2.tgz#bc2d92afd0140e39518beccd2fd0682ab4491cb6"
   dependencies:
@@ -3273,13 +3215,6 @@ first-chunk-stream@^2.0.0:
   resolved "https://registry.yarnpkg.com/first-chunk-stream/-/first-chunk-stream-2.0.0.tgz#1bdecdb8e083c0664b91945581577a43a9f31d70"
   dependencies:
     readable-stream "^2.0.2"
-
-fixer-api@^1.2.6:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/fixer-api/-/fixer-api-1.2.7.tgz#63fd5f5e12d5966ee4e7912a8966cae00edb145a"
-  dependencies:
-    moment "^2.17.1"
-    request "^2.83.0"
 
 flatten@^1.0.2:
   version "1.0.2"
@@ -4890,41 +4825,30 @@ macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
 
-machinomy@1.7.11, machinomy@^1.7.7:
-  version "1.7.11"
-  resolved "https://registry.yarnpkg.com/machinomy/-/machinomy-1.7.11.tgz#f45d9f1c244da6f51f420a0d2fd95f204f2547cc"
+machinomy@^1.8.1, machinomy@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/machinomy/-/machinomy-1.9.0.tgz#68c91684a8e3079f72b33cc1edd2528e06b9830b"
   dependencies:
     "@machinomy/contracts" "^4.0.5"
+    "@machinomy/types-bn" "^0.0.3"
     "@machinomy/types-truffle-contract" "^0.0.3"
     "@machinomy/types-web3" "^0.0.4"
     "@types/bignumber.js" "^4.0.2"
-    "@types/body-parser" "^1.16.4"
-    "@types/commander" "^2.9.1"
-    "@types/debug" "^0.0.30"
-    "@types/expect" "^1.20.3"
-    "@types/express" "^4.0.36"
-    "@types/nedb" "^1.8.3"
-    "@types/request" "^2.0.13"
-    "@types/uuid" "^3.4.3"
     bignumber.js "^4.1.0"
     commander "^2.9.0"
     debug "^3.1.0"
+    decko "^1.2.0"
     ethereumjs-util "^5.1.5"
-    fetch-ponyfill "^5.0.1"
+    fetch-ponyfill "^6.0.0"
     homedir "https://github.com/ukstv/node-homedir"
     nedb "^1.8.0"
     prompt "^1.0.0"
     request "^2.76.0"
-    safe-buffer "^5.1.1"
-    types-bn "^0.0.1"
-    types-ethereumjs-util "^0.0.8"
+    safe-buffer "^5.1.2"
+    squel "^5.12.1"
     types-rlp "^0.0.1"
     uuid "^3.2.1"
     web3 "^0.20.1"
-    whatwg-fetch "^2.0.3"
-  optionalDependencies:
-    mongodb "^2.2.31"
-    pg "^7.4.1"
 
 make-dir@^1.0.0, make-dir@^1.1.0:
   version "1.2.0"
@@ -5201,28 +5125,13 @@ mkdirp@0.x.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
-moment@>=2.14.0, moment@^2.17.1, moment@^2.19.1:
+moment@>=2.14.0, moment@^2.19.1:
   version "2.22.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.1.tgz#529a2e9bf973f259c9643d237fda84de3a26e8ad"
-
-mongodb-core@2.1.19:
-  version "2.1.19"
-  resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-2.1.19.tgz#00fbd5e5a3573763b9171cfd844e60a8f2a3a18b"
-  dependencies:
-    bson "~1.0.4"
-    require_optional "~1.0.0"
 
 "mongodb-uri@>= 0.9.7":
   version "0.9.7"
   resolved "https://registry.yarnpkg.com/mongodb-uri/-/mongodb-uri-0.9.7.tgz#0f771ad16f483ae65f4287969428e9fbc4aa6181"
-
-mongodb@^2.2.31:
-  version "2.2.35"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.35.tgz#cd1b5af8a9463e3f9a787fa5b3d05565579730f9"
-  dependencies:
-    es6-promise "3.2.1"
-    mongodb-core "2.1.19"
-    readable-stream "2.2.7"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -5353,10 +5262,6 @@ node-fetch@^1.0.1, node-fetch@~1.7.1:
   dependencies:
     encoding "^0.1.11"
     is-stream "^1.0.1"
-
-node-fetch@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.0.0.tgz#982bba43ecd4f2922a29cc186a6bbb0bb73fcba6"
 
 node-fetch@~2.1.0:
   version "2.1.2"
@@ -6290,10 +6195,6 @@ process-nextick-args@^2.0.0, process-nextick-args@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
 
-process-nextick-args@~1.0.6:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
-
 process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
@@ -6682,18 +6583,6 @@ readable-stream@1.0, readable-stream@~1.0.15:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@2.2.7:
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.7.tgz#07057acbe2467b22042d36f98c5ad507054e95b1"
-  dependencies:
-    buffer-shims "~1.0.0"
-    core-util-is "~1.0.0"
-    inherits "~2.0.1"
-    isarray "~1.0.0"
-    process-nextick-args "~1.0.6"
-    string_decoder "~1.0.0"
-    util-deprecate "~1.0.1"
-
 readable-stream@^1.0.33:
   version "1.1.14"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-1.1.14.tgz#7cf4c54ef648e3813084c636dd2079e166c081d9"
@@ -6896,7 +6785,7 @@ replace-ext@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
 
-request@2, request@^2.67.0, request@^2.73.0, request@^2.76.0, request@^2.79.0, request@^2.81.0, request@^2.83.0:
+request@2, request@^2.67.0, request@^2.73.0, request@^2.76.0, request@^2.79.0:
   version "2.85.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
   dependencies:
@@ -6960,13 +6849,6 @@ require-main-filename@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
 
-require_optional@~1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/require_optional/-/require_optional-1.0.1.tgz#4cf35a4247f64ca3df8c2ef208cc494b1ca8fc2e"
-  dependencies:
-    resolve-from "^2.0.0"
-    semver "^5.1.0"
-
 resolve-cwd@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
@@ -6979,10 +6861,6 @@ resolve-dir@^1.0.0:
   dependencies:
     expand-tilde "^2.0.0"
     global-modules "^1.0.0"
-
-resolve-from@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-2.0.0.tgz#9480ab20e94ffa1d9e80a804c7ea147611966b57"
 
 resolve-from@^3.0.0:
   version "3.0.0"
@@ -7098,6 +6976,10 @@ rxjs@^5.4.2, rxjs@^5.5.2:
 safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
+
+safe-buffer@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
 
 safe-regex@^1.1.0:
   version "1.1.0"
@@ -7495,6 +7377,10 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
+squel@^5.12.1:
+  version "5.12.1"
+  resolved "https://registry.yarnpkg.com/squel/-/squel-5.12.1.tgz#ab8fd473b6e28464004918caecedecdb08f7e3ee"
+
 ssh2-streams@~0.1.15:
   version "0.1.20"
   resolved "https://registry.yarnpkg.com/ssh2-streams/-/ssh2-streams-0.1.20.tgz#51118d154555df5469ee1f67e0cf1e7e8a2c0e3a"
@@ -7646,12 +7532,6 @@ string_decoder@^1.0.0, string_decoder@~1.1.1:
 string_decoder@~0.10.x:
   version "0.10.31"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
-
-string_decoder@~1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
-  dependencies:
-    safe-buffer "~5.1.0"
 
 stringstream@~0.0.4, stringstream@~0.0.5:
   version "0.0.5"
@@ -8074,27 +7954,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-types-bn@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/types-bn/-/types-bn-0.0.1.tgz#4253c7c7251b14e1d77cdca6f58800e5e2b82c4b"
-  dependencies:
-    bn.js "4.11.7"
-
-"types-bn@https://github.com/machinomy/types-bn.git":
-  version "0.0.1"
-  resolved "https://github.com/machinomy/types-bn.git#08ede69e138640d332b0dae0dc2e2fffee5f7160"
-  dependencies:
-    bn.js "4.11.7"
-
-types-ethereumjs-util@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/types-ethereumjs-util/-/types-ethereumjs-util-0.0.8.tgz#4530c4fe069da3ea93748baa3e18ea70133e4560"
-  dependencies:
-    "@machinomy/types-safe-buffer" "^0.0.1"
-    bn.js "^4.11.7"
-    rlp "^2.0.0"
-    types-bn "https://github.com/machinomy/types-bn.git"
-
 types-rlp@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/types-rlp/-/types-rlp-0.0.1.tgz#cb9a2fe70bbdabda3c2c491b21bc04c8bd917f9b"
@@ -8410,32 +8269,29 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vynos@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/vynos/-/vynos-0.0.12.tgz#f43434321eb841f102afd8ec52dc64bbece669dd"
+vynos@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/vynos/-/vynos-0.1.5.tgz#ae9641189a694fd7a3cc75e8984bdf8ccde034f8"
   dependencies:
-    "@machinomy/types-browser-passworder" "^0.0.6"
-    "@machinomy/types-eth-sig-util" "^0.0.6"
-    "@machinomy/types-ethereumjs-tx" "^0.0.6"
-    "@machinomy/types-ethereumjs-wallet" "^0.0.7"
+    "@machinomy/types-browser-passworder" "^0.0.7"
+    "@machinomy/types-eth-sig-util" "^0.0.7"
+    "@machinomy/types-ethereumjs-tx" "^0.0.7"
+    "@machinomy/types-ethereumjs-wallet" "^0.0.12"
     "@machinomy/types-readable-stream" "^0.0.2"
-    "@machinomy/types-safe-buffer" "^0.0.1"
     "@types/react-tap-event-plugin" "^0.0.30"
     bignumber.js "^4.1.0"
     bip39 "^2.3.1"
     browser-passworder "^2.0.3"
-    crypto-price "^0.0.4"
     duplexify "^3.5.0"
     eth-sig-util "^1.2.1"
     ethereumjs-tx "^1.3.1"
     ethereumjs-util "^5.1.2"
     ethereumjs-wallet "^0.6.0"
     events "^1.1.1"
-    fixer-api "^1.2.6"
     html2canvas "^1.0.0-alpha.9"
     localforage "^1.5.0"
     localforage-observable "^1.3.1"
-    machinomy "^1.7.7"
+    machinomy "^1.8.1"
     moment "^2.19.1"
     mux-demux "^3.7.9"
     nedb "^1.8.0"
@@ -8620,7 +8476,7 @@ webpack@^4.6.0:
     watchpack "^1.5.0"
     webpack-sources "^1.0.1"
 
-whatwg-fetch@>=0.10.0, whatwg-fetch@^2.0.3:
+whatwg-fetch@>=0.10.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
 
