@@ -163,7 +163,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       return (
         <tbody>
         {
-          this.props.channels.map((c: Channel) => (
+          this.props.channels.slice(0).reverse().map((c: Channel) => (
             <tr style={{ fontSize: '9pt' }} key={c.channelId}>
               {FIELDS.map((field: string) => <td key={field}><div title={FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)} className={bem('channel-field', field)}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</div></td>)}
               <td style={{ fontSize: '9pt' }} key={c.channelId}>
