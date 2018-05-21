@@ -102,7 +102,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
       return (
         <tbody>
         {
-          this.props.payments.map((payment: any) => (
+          this.props.payments.slice(0).reverse().map((payment: any) => (
             <tr style={{ fontSize: '9pt' }} key={payment.token}>
               {paymentKeys.map((k: string) => this.renderPaymentKey(payment, k))}
             </tr>
