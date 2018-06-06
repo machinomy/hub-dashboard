@@ -1,6 +1,6 @@
-import Machinomy from 'machinomy/dist'
+import Machinomy from 'machinomy'
 import * as express from 'express'
-import Payment, { PaymentSerde } from 'machinomy/dist/lib/payment'
+import Payment, { PaymentSerde } from 'machinomy/lib/payment'
 import PaymentsDao from '../dao/PaymentsDao'
 import { ApiService } from './ApiService'
 import log from '../util/log'

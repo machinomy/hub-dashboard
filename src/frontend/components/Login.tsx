@@ -103,4 +103,4 @@ function mapDispatchToProps (dispatch: Dispatch<any>): DispatchProps {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login) as any)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

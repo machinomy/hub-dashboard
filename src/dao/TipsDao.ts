@@ -1,6 +1,6 @@
 import * as BigNumber from 'bignumber.js'
-import Machinomy from 'machinomy/dist'
-import Payment, { PaymentSerde } from 'machinomy/dist/lib/payment'
+import Machinomy from 'machinomy'
+import Payment, { PaymentSerde } from 'machinomy/lib/payment'
 import DBEngine from '../DBEngine'
 import { Client } from 'pg'
 import { Tip, TipDto } from '../domain/Tip'

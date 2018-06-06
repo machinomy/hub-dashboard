@@ -2,10 +2,10 @@ import * as BigNumber from 'bignumber.js'
 import DBEngine from '../DBEngine'
 import { Client } from 'pg'
 import { TotalsTuple } from './TipsDao'
-import { PaymentChannel, PaymentChannelSerde } from 'machinomy/dist/lib/PaymentChannel'
+import { PaymentChannel, PaymentChannelSerde } from 'machinomy/lib/PaymentChannel'
 import log from '../util/log'
 import Config from '../Config'
-import Payment, { PaymentSerde } from 'machinomy/dist/lib/payment'
+import Payment, { PaymentSerde } from 'machinomy/lib/payment'
 
 export default interface PaymentsDao {
   totalAvailableFor (address: string): Promise<TotalsTuple>

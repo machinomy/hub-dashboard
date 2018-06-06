@@ -1,5 +1,5 @@
 import * as express from 'express'
-import Payment from 'machinomy/dist/lib/payment'
+import Payment from 'machinomy/lib/payment'
 import TipsDao from './dao/TipsDao'
 import { Tip, TipDto } from './domain/Tip'
 

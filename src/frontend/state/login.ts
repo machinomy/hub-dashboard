@@ -39,6 +39,7 @@ export function login (): ThunkAction<Promise<SetAddressAction>, LoginState, voi
   return async (dispatch) => {
     const client = new AuthenticationClient(backend.fullHost(), w3(), fetch.bind(window))
     const accounts = await pify<string[]>(cb => w3().eth.getAccounts(cb))
+    console.log('login.accounts', accounts)
     const res = await client.authenticate(accounts[0], window.location.hostname)
     return dispatch(setAddress(res.address))
   }

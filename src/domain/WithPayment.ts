@@ -1,4 +1,4 @@
-import Payment from 'machinomy/dist/lib/payment'
+import Payment from 'machinomy/lib/payment'
 
 export interface WithPayment {
   payment: Payment | undefined
