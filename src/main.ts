@@ -5,12 +5,17 @@ import DBEngine from './DBEngine'
 import { Client } from 'pg'
 import TipsDao, { PostgresTipsDao } from './dao/TipsDao'
 import { PaymentHandlerImpl } from './PaymentHandler'
+import * as fs from 'fs'
 
 require('dotenv').config()
 
 const registry = new Registry()
 registry.bind('TipsDao', (engine: DBEngine<Client>, machinomy: Machinomy) => new PostgresTipsDao(engine, machinomy), ['DBEngine', 'Machinomy'])
 registry.bind('PaymentHandler', (tipsDao: TipsDao) => new PaymentHandlerImpl(tipsDao), ['TipsDao'])
+
+const WHITELIST_FILE = process.env.WHITELIST_FILE as string
+const whitelistContent = WHITELIST_FILE ? JSON.parse(fs.readFileSync(WHITELIST_FILE).toString()) : { whitelist: [] }
+const whitelist = whitelistContent.whitelist
 
 const hub = new PaymentHub({
   ethRpcUrl: process.env.ETH_RPC_URL!,
@@ -20,7 +25,8 @@ const hub = new PaymentHub({
   sessionSecret: 'Zx8Vc9SZfPjOLp6pTw60J4Ppda3MWU23PqO3nWYh2tBamQPLYuKdFsTsBdJZIvN',
   port: parseInt(process.env.PORT!, 10),
   authDomainWhitelist: [
-    'localhost'
+    'localhost',
+    ...whitelist
   ],
   recipientAddress: process.env.WALLET_ADDRESS!,
   hotWalletAddress: process.env.WALLET_ADDRESS!,
