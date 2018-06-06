@@ -13,7 +13,7 @@ registry.bind('TipsDao', (engine: DBEngine<Client>, machinomy: Machinomy) => new
 registry.bind('PaymentHandler', (tipsDao: TipsDao) => new PaymentHandlerImpl(tipsDao), ['TipsDao'])
 
 const WHITELIST_DOMAINS = process.env.WHITELIST_DOMAINS ? String(process.env.WHITELIST_DOMAINS) : ''
-const whitelist = WHITELIST_DOMAINS.split('.')
+const whitelist = WHITELIST_DOMAINS.split(',')
 
 const hub = new PaymentHub({
   ethRpcUrl: process.env.ETH_RPC_URL!,
