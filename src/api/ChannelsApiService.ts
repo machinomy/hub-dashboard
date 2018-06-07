@@ -27,13 +27,13 @@ export default class ChannelsApiService implements ApiService {
     this.claimService = claimService
     this.paymentsDao = paymentsDao
 
-    this.doChannels = this.doChannels.bind(this)
-    this.doClaimStatus = this.doClaimStatus.bind(this)
-    this.doCloseChannel = this.doCloseChannel.bind(this)
+    this.getChannels = this.getChannels.bind(this)
+    this.getClaimStatus = this.getClaimStatus.bind(this)
+    this.getCloseChannel = this.getCloseChannel.bind(this)
     this.setupRoutes()
   }
 
-  private async doChannels (req: express.Request, res: express.Response) {
+  private async getChannels (req: express.Request, res: express.Response) {
     if (!req.session!.roles.has(Role.ADMIN)) {
       return res.sendStatus(403)
     }
@@ -60,7 +60,7 @@ export default class ChannelsApiService implements ApiService {
     res.send(newData)
   }
 
-  private async doClaimStatus (req: express.Request, res: express.Response) {
+  private async getClaimStatus (req: express.Request, res: express.Response) {
     const channelId = req.params.channelId
 
     if (!channelId) {
@@ -93,7 +93,7 @@ export default class ChannelsApiService implements ApiService {
     }
   }
 
-  private async doCloseChannel (req: express.Request, res: express.Response) {
+  private async getCloseChannel (req: express.Request, res: express.Response) {
     const channelId = req.params.channelId
     let channel
 
@@ -140,8 +140,8 @@ export default class ChannelsApiService implements ApiService {
   }
 
   private setupRoutes () {
-    this.router.get('/', this.doChannels)
-    this.router.get('/:channelId/claimStatus', this.doClaimStatus)
-    this.router.get('/:channelId/close', this.doCloseChannel)
+    this.router.get('/', this.getChannels)
+    this.router.get('/:channelId/claimStatus', this.getClaimStatus)
+    this.router.get('/:channelId/close', this.getCloseChannel)
   }
 }
