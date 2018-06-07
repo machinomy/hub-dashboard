@@ -12,6 +12,7 @@ const bem = bemify('channels')
 
 export interface StateProps {
   channels: Channel[]
+  address: string
 }
 
 export interface DispatchProps {
@@ -19,7 +20,11 @@ export interface DispatchProps {
   closeChannel: ActionCreator<Promise<CloseChannelClaimAction>>,
 }
 
-export interface ChannelsProps extends StateProps, DispatchProps {
+export interface OwnProps {
+  address: string
+}
+
+export interface ChannelsProps extends OwnProps, StateProps, DispatchProps {
 }
 
 export interface ChannelsState {
@@ -163,7 +168,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       return (
         <tbody>
         {
-          this.props.channels.slice(0).reverse().map((c: Channel) => (
+          this.revealedChannels().map(c => (
             <tr style={{ fontSize: '9pt' }} key={c.channelId}>
               {FIELDS.map((field: string) => <td key={field}><div title={FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)} className={bem('channel-field', field)}>{FIELD_RENDERERS[field] ? FIELD_RENDERERS[field](c, field) : FIELD_RENDERERS._(c, field)}</div></td>)}
               <td style={{ fontSize: '9pt' }} key={c.channelId}>
@@ -177,6 +182,11 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
         </tbody>
       )
     }
+  }
+
+  revealedChannels (): Array<Channel> {
+    let all = this.props.channels.slice(0).reverse()
+    return all.filter(channel => channel.receiver === this.props.address)
   }
 
   handleCloseChannelInTableClick (channel: Channel) {
@@ -196,9 +206,10 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
   }
 }
 
-function mapStateToProps (state: AppState): StateProps {
+function mapStateToProps (state: AppState, ownProps: OwnProps): StateProps {
   return {
-    channels: state.channels.channels
+    channels: state.channels.channels,
+    address: ownProps.address
   }
 }
 

@@ -49,13 +49,14 @@ export class Authenticated extends React.Component<AuthenticatedProps, Authentic
       return <Redirect to="/admin/login" />
     }
 
+    let address = this.props.address
     return (
       <div id="authenticated">
         <Masthead />
         <Switch>
           <Route exact={true} path="/admin" render={() => <Redirect to="/admin/payments" />} />
           <Route path="/admin/payments" render={() => <Payments />} />
-          <Route path="/admin/channels" render={() => <Channels />} />
+          <Route path="/admin/channels" render={() => <Channels address={address} />} />
           <Route path="/admin/global-settings" render={() => <GlobalSettings />} />
         </Switch>
       </div>
