@@ -48,7 +48,7 @@ export default class PaymentHub {
     const COOKIE_NAME = 'hub.sid'
 
     registry.bind('Config', () => config)
-    registry.bind('Web3', () => new Web3(new Web3.providers.HttpProvider(config.ethRpcUrl)))
+    registry.bind('Web3', () => new Web3(config.provider))
     registry.bind('AuthHandler', (config: Config) => new DefaultAuthHandler(config), ['Config'])
     registry.bind('SessionStore', () => store)
 

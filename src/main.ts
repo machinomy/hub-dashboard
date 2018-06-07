@@ -5,6 +5,7 @@ import DBEngine from './DBEngine'
 import { Client } from 'pg'
 import TipsDao, { PostgresTipsDao } from './dao/TipsDao'
 import { PaymentHandlerImpl } from './PaymentHandler'
+import HDWalletProvider from '@machinomy/hdwallet-provider'
 
 require('dotenv').config()
 
@@ -15,8 +16,12 @@ registry.bind('PaymentHandler', (tipsDao: TipsDao) => new PaymentHandlerImpl(tip
 const WHITELIST_DOMAINS = process.env.WHITELIST_DOMAINS ? String(process.env.WHITELIST_DOMAINS) : ''
 const whitelist = WHITELIST_DOMAINS.split(',')
 
+const ETH_RPC_URL = process.env.ETH_RPC_URL as string
+const MNEMONIC = process.env.MNEMONIC as string
+const provider = new HDWalletProvider(MNEMONIC, ETH_RPC_URL)
+
 const hub = new PaymentHub({
-  ethRpcUrl: process.env.ETH_RPC_URL!,
+  provider: provider,
   databaseUrl: process.env.DATABASE_URL!,
   redisUrl: process.env.REDIS_URL!,
   authRealm: 'Machinomy',

@@ -1,5 +1,6 @@
 import camelize from './util/camelize'
 import { Registry } from './Container'
+import * as Web3 from 'web3'
 
 const ENV_VARS = [
   'ETH_RPC_URL',
@@ -23,7 +24,7 @@ export interface BrandingConfig {
 }
 
 export default class Config {
-  public ethRpcUrl: string = ''
+  public provider?: Web3.Provider
   public databaseUrl: string = ''
   public redisUrl: string = ''
   public authRealm: string = ''

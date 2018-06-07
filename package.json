@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@machinomy/contracts": "^4.0.9",
+    "@machinomy/hdwallet-provider": "^1.1.0",
     "@machinomy/types-truffle-contract": "0.0.3",
     "@types/classnames": "^2.2.3",
     "@types/cookie-parser": "^1.4.1",
