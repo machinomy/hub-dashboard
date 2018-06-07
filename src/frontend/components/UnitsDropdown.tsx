@@ -33,9 +33,6 @@ export class UnitsDropdown extends React.Component<UnitsDropdownProps, {}> {
             <a href="#" className={this.itemClassNames(Unit.ETH)} onClick={(e: any) => this.setActiveUnit(e, Unit.ETH)}>
               ETH
             </a>
-            <a href="#" className={this.itemClassNames(Unit.USD)} onClick={(e: any) => this.setActiveUnit(e, Unit.USD)}>
-              USD
-            </a>
           </div>
         </li>
       </ul>
