@@ -46,7 +46,7 @@ export class Payments extends React.Component<PaymentsProps, PaymentsState> {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h1>All Payments</h1>
+            <h1>Payments</h1>
             {this.renderContent()}
           </div>
         </div>

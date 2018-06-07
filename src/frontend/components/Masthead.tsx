@@ -26,8 +26,11 @@ const CustomLink = ({ to, children }: { to: string, children: any }) => {
 
 export default class Masthead extends React.Component<{}, {}> {
   render () {
+    let navStyle = {
+      backgroundColor: '#de5080'
+    }
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light" style={navStyle}>
         <div className="container">
           <a href="#" className="navbar-brand">Hub Dashboard</a>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbar">

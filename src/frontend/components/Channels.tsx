@@ -92,7 +92,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h1>All Channels</h1>
+            <h1>Channels</h1>
             {this.renderContent()}
           </div>
         </div>
@@ -125,7 +125,7 @@ export class Channels extends React.Component<ChannelsProps, ChannelsState> {
       return 'Loading...'
     }
 
-    const headers = ['ID', 'Spent', 'Value', 'Sender', 'State', 'Last Payment', '']
+    const headers = ['Channel ID', 'Spent', 'Value', 'Sender', 'State', 'Last Payment', '']
 
     return (
       <div className={bem('table')}>
