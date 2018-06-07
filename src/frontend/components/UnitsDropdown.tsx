@@ -19,6 +19,9 @@ export class UnitsDropdown extends React.Component<UnitsDropdownProps, {}> {
   render () {
     return (
       <ul className="navbar-nav">
+        <li className="nav-item pull-right">
+          <a className="nav-link" href="javascript:window.dispatchEvent(new Event('vynos.show'));">Vynos</a>
+        </li>
         <li className="nav-item dropdown pull-right">
           <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown" id="units-dropdown">
             Units: <strong>{Unit[this.props.unit]}</strong>

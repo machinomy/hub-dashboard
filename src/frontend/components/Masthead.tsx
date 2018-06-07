@@ -29,7 +29,7 @@ export default class Masthead extends React.Component<{}, {}> {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
-          <a href="#" className="navbar-brand">Dashboard Admin</a>
+          <a href="#" className="navbar-brand">Hub Dashboard</a>
           <button className="navbar-toggler" data-toggle="collapse" data-target="#navbar">
             <span className="navbar-toggler-icon" />
           </button>
@@ -41,7 +41,6 @@ export default class Masthead extends React.Component<{}, {}> {
               <CustomLink to="/admin/channels">
                 Channels
               </CustomLink>
-              <a href="javascript:window.dispatchEvent(new Event('vynos.show'));">Vynos</a>
             </ul>
             <UnitsDropdown />
           </div>
