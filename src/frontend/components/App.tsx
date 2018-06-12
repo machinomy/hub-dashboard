@@ -44,7 +44,7 @@ export class App extends React.Component<AppProps, {}> {
             <Route exact={true} path="/admin/login" render={() => <Login />} />
             <Route path="/admin" render={() => <Authenticated />} />
           </Switch>
-          <Redirect from="/" to="/admin" />
+          <Redirect from="/" to="/admin" exact={true} />
         </div>
       </Router>
     )
