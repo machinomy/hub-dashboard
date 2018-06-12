@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import Login from './Login'
 import Authenticated from './Authenticated'
 import { pollWeb3, SetWeb3StatusAction, Web3Status } from '../state/web3'
@@ -44,6 +44,7 @@ export class App extends React.Component<AppProps, {}> {
             <Route exact={true} path="/admin/login" render={() => <Login />} />
             <Route path="/admin" render={() => <Authenticated />} />
           </Switch>
+          <Redirect from="/" to="/admin" />
         </div>
       </Router>
     )
